@@ -3,53 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christopher James Ron</title>
+    <title>Chris Ron</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/output.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            background-color: #f3f4f6; /* Tailwind's gray-100 */
+        }
+        .fixed-background {
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 33.333%;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-    <header class="bg-gray-900 text-white">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <h1 class="text-2xl font-bold">Portfolio</h1>
-        </div>
-    </header>
+<body class="font-sans leading-normal tracking-normal">
+    <!-- Background Section -->
+    <div class="fixed-background" style="background-image: url('your-photo.jpg');"></div>
 
-    <main class="container mx-auto my-8 px-4">
-        <!-- About Section -->
-        <section id="about" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-xl font-bold mb-4">About Me</h2>
-            <p class="text-gray-700">I am a software developer with a passion for building efficient and innovative applications. I specialize in [your specialties, e.g., full-stack development, cloud computing, etc.] and enjoy collaborating on meaningful projects.</p>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-xl font-bold mb-4">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Example Project Card -->
-                <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
-                    <h3 class="font-bold text-lg mb-2">Project Name</h3>
-                    <p class="text-gray-600">A brief description of the project. What it does, the tech stack used, and its purpose.</p>
-                    <a href="#" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
-                </div>
-                <!-- Add more project cards as needed -->
+    <!-- Main Content Area -->
+    <div class="w-2/3 bg-white h-screen overflow-y-scroll relative">
+        <header class="bg-gray-900 text-white sticky top-0 z-10">
+            <div class="container mx-auto flex justify-between items-center p-4">
+                <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
             </div>
-        </section>
+        </header>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-bold mb-4">Contact</h2>
-            <p class="text-gray-700">Feel free to reach out to me for collaboration or inquiries:</p>
-            <ul class="list-disc ml-6 mt-2">
-                <li>Email: <a href="mailto:your.email@example.com" class="text-blue-500 hover:underline">your.email@example.com</a></li>
-                <li>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-blue-500 hover:underline">linkedin.com/in/yourprofile</a></li>
-                <li>GitHub: <a href="https://github.com/yourusername" target="_blank" class="text-blue-500 hover:underline">github.com/yourusername</a></li>
-            </ul>
-        </section>
-    </main>
+        <main class="container mx-auto my-8 px-4">
+            <!-- About Section -->
+            <section id="about" class="bg-gray-100 rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-bold mb-4">About Me</h2>
+                <p class="text-gray-700">I am a software developer with experience in object-oriented programming languages such as Java, Python, and JavaScript.</p>
+            </section>
 
-    <footer class="bg-gray-900 text-white text-center p-4">
-        <p>&copy; 2025 Your Name. All Rights Reserved.</p>
-    </footer>
+            <!-- Projects Section -->
+            <section id="projects" class="bg-gray-100 rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-bold mb-4">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Project Card 1 -->
+                    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+                        <h3 class="font-bold text-lg mb-2">Blockchain Voting App</h3>
+                        <p class="text-gray-600">Decentralized and secure voting platform built using React, Flask, and blockchain technology.</p>
+                        <a href="https://github.com/cjron128/blockchain-voting-app" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="bg-gray-100 rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4">Contact</h2>
+                <p class="text-gray-700">Feel free to reach out to me to discuss how I can contribute to your team:</p>
+                <ul class="list-disc ml-6 mt-2">
+                    <li>Email: <a href="mailto:christopherjron@gmail.com" class="text-blue-500 hover:underline">christopherjron@gmail.com</a></li>
+                    <li>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-blue-500 hover:underline">linkedin.com/in/yourprofile</a></li>
+                    <li>GitHub: <a href="https://github.com/cjron128" target="_blank" class="text-blue-500 hover:underline">https://github.com/cjron128</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
