@@ -5,55 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chris Ron - Dev Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/icons/laptop.ico" type="image/x-icon">
     <style>
         body {
-            background-color: #ffffff; /* Tailwind's gray-100 */
-            background-image: url('your-photo.jpg'); /* Your picture as the background */
-            background-position: right center;
-            background-size: cover;
-            background-attachment: fixed; /* Makes the background stationary */
+            background-color: #ffffff; /* White background */
+        }
+        .fixed-image {
+            background-image: url('./assets/images/background2.jpeg'); /* Your background image */
+            background-size: cover; /* Ensures the image covers the fixed column */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents tiling */
         }
     </style>
 </head>
 <body class="font-sans leading-normal tracking-normal">
-    <!-- Floating Scrollable Content -->
-    <div class="relative w-2/3 mx-auto bg-white bg-opacity-0 overflow-y-auto h-screen p-6">
-        <div class="mt-4 space-y-8">
-            <!-- Header -->
-            <header class="sticky top-0 bg-gray-900 text-white rounded-t-lg p-4 z-10 shadow">
-                <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
-            </header>
+    <!-- Main Container -->
+    <div class="grid grid-cols-4 h-screen">
+        <!-- Fixed Image Column -->
+        <div class="fixed-image col-span-2 h-full"></div>
 
-            <!-- About Section -->
-            <section id="about" class="p-6 bg-gray-100 rounded-lg shadow-md">
-                <h2 class="text-xl font-bold mb-4">About Me</h2>
-                <p class="text-gray-700">I am a software developer with experience in object-oriented programming languages such as Java, Python, and JavaScript.</p>
-            </section>
+        <!-- Scrollable Content Column -->
+        <div class="col-span-2 overflow-y-auto p-6">
+            <div class="space-y-8">
+                <!-- Header -->
+                <header class="sticky top-0 bg-gray-900 text-white rounded-t-lg p-4 z-10 shadow">
+                    <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
+                </header>
 
-            <!-- Projects Section -->
-            <section id="projects" class="p-6 bg-gray-100 rounded-lg shadow-md">
-                <h2 class="text-xl font-bold mb-4">Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Project Card -->
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg shadow hover:shadow-lg transition">
-                        <h3 class="font-bold text-lg mb-2">Blockchain Voting App</h3>
-                        <p class="text-gray-600">Decentralized and secure voting platform built using React, Flask, and blockchain technology.</p>
-                        <a href="https://github.com/cjron128/blockchain-voting-app" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
+                <!-- About Section -->
+                <section id="about" class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold mb-4">About Me</h2>
+                    <p class="text-gray-700">I am a software developer with experience in object-oriented programming languages such as Java, Python, and JavaScript. I'm eager to apply my skills to create impactful software solutions.</p>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold mb-4">Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Project Card -->
+                        <div class="bg-white bg-opacity-20 p-4 rounded-lg shadow hover:shadow-lg transition">
+                            <h3 class="font-bold text-lg mb-2">Blockchain Voting App</h3>
+                            <p class="text-gray-600">Decentralized voting platform built using React, Flask, and blockchain technology.</p>
+                            <a href="https://github.com/cjron128/blockchain-voting-app" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="p-6 bg-gray-100 rounded-lg shadow-md">
-                <h2 class="text-xl font-bold mb-4">Contact</h2>
-                <p class="text-gray-700">Feel free to reach out to me to discuss how I can contribute to your team:</p>
-                <ul class="list-disc ml-6 mt-2">
-                    <li>Email: <a href="mailto:christopherjron@gmail.com" class="text-blue-500 hover:underline">christopherjron@gmail.com</a></li>
-                    <li>LinkedIn: <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-blue-500 hover:underline">linkedin.com/in/chrisron</a></li>
-                    <li>GitHub: <a href="https://github.com/cjron128" target="_blank" class="text-blue-500 hover:underline">https://github.com/cjron128</a></li>
-                </ul>
-            </section>
+                <!-- Contact Section -->
+                <section id="contact" class="p-6 bg-gray-100 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold mb-4">Contact</h2>
+                    <p class="text-gray-700">Feel free to reach out to me to discuss how I can contribute to your team:</p>
+                    <ul class="list-disc ml-6 mt-2">
+                        <li>Email: <a href="mailto:christopherjron@gmail.com" class="text-blue-500 hover:underline">christopherjron@gmail.com</a></li>
+                        <li>LinkedIn: <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-blue-500 hover:underline">linkedin.com/in/chrisron</a></li>
+                        <li>GitHub: <a href="https://github.com/cjron128" target="_blank" class="text-blue-500 hover:underline">https://github.com/cjron128</a></li>
+                    </ul>
+                </section>
+            </div>
         </div>
     </div>
 </body>
