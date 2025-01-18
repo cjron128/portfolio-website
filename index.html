@@ -5,48 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chris Ron</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./styles/output.css">
     <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
-
     <style>
         body {
             background-color: #f3f4f6; /* Tailwind's gray-100 */
-        }
-        .fixed-background {
+            background-image: url('your-photo.jpg'); /* Your picture as the background */
+            background-position: right center;
             background-size: cover;
-            background-position: center;
-            position: fixed;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 33.333%;
+            background-attachment: fixed; /* Makes the background stationary */
         }
     </style>
 </head>
 <body class="font-sans leading-normal tracking-normal">
-    <!-- Background Section -->
-    <div class="fixed-background" style="background-image: url('your-photo.jpg');"></div>
-
-    <!-- Main Content Area -->
-    <div class="w-2/3 bg-white h-screen overflow-y-scroll relative">
-        <header class="bg-gray-900 text-white sticky top-0 z-10">
-            <div class="container mx-auto flex justify-between items-center p-4">
-                <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
-            </div>
+    <!-- Floating Scrollable Content -->
+    <div class="relative w-2/3 mx-auto bg-white bg-opacity-90 rounded-lg shadow-lg overflow-y-auto h-screen p-6">
+        <header class="sticky top-0 bg-gray-900 text-white rounded-t-lg p-4 z-10 shadow">
+            <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
         </header>
 
-        <main class="container mx-auto my-8 px-4">
+        <main class="mt-4 space-y-8">
             <!-- About Section -->
-            <section id="about" class="bg-gray-100 rounded-lg shadow-md p-6 mb-8">
+            <section id="about" class="p-6 bg-gray-100 rounded-lg shadow-md">
                 <h2 class="text-xl font-bold mb-4">About Me</h2>
                 <p class="text-gray-700">I am a software developer with experience in object-oriented programming languages such as Java, Python, and JavaScript.</p>
             </section>
 
             <!-- Projects Section -->
-            <section id="projects" class="bg-gray-100 rounded-lg shadow-md p-6 mb-8">
+            <section id="projects" class="p-6 bg-gray-100 rounded-lg shadow-md">
                 <h2 class="text-xl font-bold mb-4">Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Project Card 1 -->
+                    <!-- Project Card -->
                     <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
                         <h3 class="font-bold text-lg mb-2">Blockchain Voting App</h3>
                         <p class="text-gray-600">Decentralized and secure voting platform built using React, Flask, and blockchain technology.</p>
@@ -56,7 +44,7 @@
             </section>
 
             <!-- Contact Section -->
-            <section id="contact" class="bg-gray-100 rounded-lg shadow-md p-6">
+            <section id="contact" class="p-6 bg-gray-100 rounded-lg shadow-md">
                 <h2 class="text-xl font-bold mb-4">Contact</h2>
                 <p class="text-gray-700">Feel free to reach out to me to discuss how I can contribute to your team:</p>
                 <ul class="list-disc ml-6 mt-2">
