@@ -7,46 +7,83 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="./assets/icons/laptop.ico" type="image/x-icon">
     <style>
-        body {
-            background-color: #ffffff; /* White background */
+        /* Define CSS custom properties with generic names */
+        :root {
+            --background-primary: #2f4858; /* Main background color */
+            --background-secondary: #33658a; /* Secondary background color */
+            --header-background: #AE847E; /* Header background color */
+            --text-primary: #FAF3DD; /* Primary text color */
+            --accent-primary: #B9E3C6; /* Primary accent color */
+            --accent-secondary: #59C9A5; /* Secondary accent color */
+            --shadow-primary: color-mix(in srgb, var(--background-primary) 70%, black); /* Darker version of background-primary */
         }
-        .fixed-image {
-            background-image: url('./assets/images/background2.jpeg'); /* Your background image */
-            background-size: cover; /* Ensures the image covers the fixed column */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents tiling */
+    
+        /* Apply the palette */
+        body {
+            background-color: var(--background-primary);
+            color: var(--text-primary);
+        }
+    
+        .bg-primary {
+            background-color: var(--background-primary);
+        }
+    
+        .bg-secondary {
+            background-color: var(--background-secondary);
+        }
+    
+        .bg-header {
+            background-color: var(--header-background);
+        }
+    
+        .text-primary {
+            color: var(--text-primary);
+        }
+    
+        .text-accent {
+            color: var(--accent-primary);
+        }
+    
+        .text-accent-secondary {
+            color: var(--accent-secondary);
+        }
+    
+        .shadow-primary {
+            box-shadow: 0 4px 6px var(--shadow-primary);
         }
     </style>
+    
+    
 </head>
 <body class="font-sans leading-normal tracking-normal">
     <!-- Main Container -->
     <div class="grid grid-cols-4 h-screen">
         <!-- Fixed Image Column -->
-        <div class="fixed-image col-span-2 h-full"></div>
+        <div class="bg-primary col-span-2 h-full" style="background-image: url('./assets/images/background2.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
         <!-- Scrollable Content Column -->
         <div class="col-span-2 overflow-y-auto p-6">
             <div class="space-y-8">
                 <!-- Header -->
-                <header class="sticky top-0 bg-gray-900 text-white rounded-t-lg p-4 z-10 shadow">
+                <header class="sticky top-0 bg-header text-primary rounded-t-lg p-4 z-10 shadow-primary">
                     <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
                 </header>
+                
 
                 <!-- About Section -->
-                <section id="about" class="p-6 bg-gray-100 rounded-lg shadow-md">
-                    <h2 class="text-xl font-bold mb-4">About Me</h2>
-                    <p class="text-gray-700">
+                <section id="about" class="p-6 bg-secondary rounded-lg shadow-primary">
+                    <h2 class="text-xl font-bold text-primary mb-4">About Me</h2>
+                    <p>
                         I am a recent Computer Science graduate (December 2024) with experience in Java, Python, and JavaScript.
                     </p>
-                    <p class="text-gray-700 mt-4">
+                    <p class="mt-4">
                         I'm eager to create impactful software solutions—let's connect!
                     </p>
                 </section>
-                
 
                 <!-- Projects Section -->
-                <section id="projects" class="p-6 bg-gray-100 rounded-lg shadow-md">
-                    <h2 class="text-xl font-bold mb-4">Projects</h2>
+                <section id="projects" class="p-6 bg-secondary rounded-lg shadow-primary">
+                    <h2 class="text-xl font-bold text-primary mb-4">Projects</h2>
                     <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <!-- Repositories will be dynamically added here -->
                     </div>
@@ -54,8 +91,8 @@
                 
                 <script>
                     async function fetchGitHubRepos() {
-                        const username = 'cjron128'; // Replace with your GitHub username
-                        const currentRepo = 'portfolio-website'; // Replace with your portfolio site's repo name
+                        const username = 'cjron128';
+                        const currentRepo = 'portfolio-website';
                         const apiUrl = `https://api.github.com/users/${username}/repos`;
                 
                         try {
@@ -64,18 +101,17 @@
                                 throw new Error(`GitHub API returned status: ${response.status}`);
                             }
                             const repos = await response.json();
-                
                             const filteredRepos = repos.filter(repo => repo.name !== currentRepo);
                 
                             const projectList = document.getElementById('project-list');
                             filteredRepos.forEach(repo => {
                                 const repoCard = document.createElement('div');
-                                repoCard.className = 'bg-white p-4 rounded-lg shadow hover:shadow-lg transition';
+                                repoCard.className = 'bg-primary p-4 rounded-lg shadow hover:shadow-lg transition text-accent-secondary';
                 
                                 repoCard.innerHTML = `
                                     <h3 class="font-bold text-lg mb-2">${repo.name}</h3>
-                                    <p class="text-gray-600">${repo.description || 'No description provided.'}</p>
-                                    <a href="${repo.html_url}" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
+                                    <p>${repo.description || 'No description provided.'}</p>
+                                    <a href="${repo.html_url}" target="_blank" class="text-accent hover:underline mt-2 inline-block">View on GitHub</a>
                                 `;
                                 projectList.appendChild(repoCard);
                             });
@@ -88,16 +124,15 @@
                     // Fetch and display repos when the page loads
                     fetchGitHubRepos();
                 </script>
-                
 
                 <!-- Contact Section -->
-                <section id="contact" class="p-6 bg-gray-100 rounded-lg shadow-md">
-                    <h2 class="text-xl font-bold mb-4">Contact</h2>
-                    <p class="text-gray-700">Feel free to reach out to me to discuss how I can contribute to your team:</p>
-                    <ul class="list-disc ml-6 mt-2">
-                        <li>Email: <a href="mailto:christopherjron@gmail.com" class="text-blue-500 hover:underline">christopherjron@gmail.com</a></li>
-                        <li>LinkedIn: <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-blue-500 hover:underline">linkedin.com/in/chrisron</a></li>
-                        <li>GitHub: <a href="https://github.com/cjron128" target="_blank" class="text-blue-500 hover:underline">https://github.com/cjron128</a></li>
+                <section id="contact" class="p-6 bg-secondary rounded-lg shadow-primary">
+                    <h2 class="text-xl font-bold text-primary mb-4">Contact</h2>
+                    <p>Feel free to reach out to me to discuss how I can contribute to your team:</p>
+                    <ul class="bg-primary mt-2 p-4 rounded-lg text-accent-secondary">
+                        <li>Email: <a href="mailto:christopherjron@gmail.com" class="text-accent hover:underline">christopherjron@gmail.com</a></li>
+                        <li>LinkedIn: <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:underline">linkedin.com/in/chrisron</a></li>
+                        <li>GitHub: <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:underline">https://github.com/cjron128</a></li>
                     </ul>
                 </section>
             </div>
