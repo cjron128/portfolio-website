@@ -47,15 +47,48 @@
                 <!-- Projects Section -->
                 <section id="projects" class="p-6 bg-gray-100 rounded-lg shadow-md">
                     <h2 class="text-xl font-bold mb-4">Projects</h2>
-                    <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <!-- Project Card -->
-                        <div class="bg-white bg-opacity-20 p-4 rounded-lg shadow hover:shadow-lg transition">
-                            <h3 class="font-bold text-lg mb-2">Blockchain Voting App</h3>
-                            <p class="text-gray-600">Decentralized voting platform built using React, Flask, and blockchain technology.</p>
-                            <a href="https://github.com/cjron128/blockchain-voting-app" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
-                        </div>
+                    <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Repositories will be dynamically added here -->
                     </div>
                 </section>
+                
+                <script>
+                    async function fetchGitHubRepos() {
+                        const username = 'cjron128'; // Replace with your GitHub username
+                        const currentRepo = 'portfolio-website'; // Replace with your portfolio site's repo name
+                        const apiUrl = `https://api.github.com/users/${username}/repos`;
+                
+                        try {
+                            const response = await fetch(apiUrl);
+                            if (!response.ok) {
+                                throw new Error(`GitHub API returned status: ${response.status}`);
+                            }
+                            const repos = await response.json();
+                
+                            const filteredRepos = repos.filter(repo => repo.name !== currentRepo);
+                
+                            const projectList = document.getElementById('project-list');
+                            filteredRepos.forEach(repo => {
+                                const repoCard = document.createElement('div');
+                                repoCard.className = 'bg-white p-4 rounded-lg shadow hover:shadow-lg transition';
+                
+                                repoCard.innerHTML = `
+                                    <h3 class="font-bold text-lg mb-2">${repo.name}</h3>
+                                    <p class="text-gray-600">${repo.description || 'No description provided.'}</p>
+                                    <a href="${repo.html_url}" target="_blank" class="text-blue-500 hover:underline mt-2 inline-block">View on GitHub</a>
+                                `;
+                                projectList.appendChild(repoCard);
+                            });
+                        } catch (error) {
+                            console.error('Error fetching repositories:', error);
+                            document.getElementById('project-list').innerHTML = `<p class="text-red-500">Failed to load projects.</p>`;
+                        }
+                    }
+                
+                    // Fetch and display repos when the page loads
+                    fetchGitHubRepos();
+                </script>
+                
 
                 <!-- Contact Section -->
                 <section id="contact" class="p-6 bg-gray-100 rounded-lg shadow-md">
