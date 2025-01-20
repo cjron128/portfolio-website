@@ -17,49 +17,46 @@
             --accent-secondary: #76B041; /* Secondary accent color */
             --shadow-primary: color-mix(in srgb, var(--background-primary) 70%, black); /* Darker version of background-primary */
         }
-    
-        /* Apply the palette */
+
         body {
             background-color: var(--background-primary);
             color: var(--text-primary);
         }
-    
+
         .bg-primary {
             background-color: var(--background-primary);
         }
-    
+
         .bg-secondary {
             background-color: var(--background-secondary);
         }
-    
+
         .bg-header {
             background-color: var(--header-background);
         }
-    
+
         .text-primary {
             color: var(--text-primary);
         }
-    
+
         .text-accent {
             color: var(--accent-primary);
         }
-    
+
         .text-accent-secondary {
             color: var(--accent-secondary);
         }
-    
+
         .shadow-primary {
             box-shadow: 0 4px 6px var(--shadow-primary);
         }
     </style>
-    
-    
 </head>
 <body class="font-sans leading-normal tracking-normal">
     <!-- Main Container -->
-    <div class="grid grid-cols-4 h-screen">
+    <div class="grid grid-cols-1 md:grid-cols-4 md:h-screen">
         <!-- Fixed Image Column -->
-        <div class="bg-primary col-span-2 h-full" style="background-image: url('./assets/images/background2.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+        <div class="bg-primary md:col-span-2 h-64 md:h-full" style="background-image: url('./assets/images/background2.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
         <!-- Scrollable Content Column -->
         <div class="col-span-2 overflow-y-auto p-6">
@@ -68,7 +65,6 @@
                 <header class="sticky top-0 bg-header text-primary rounded-t-lg p-4 z-10 shadow-primary">
                     <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
                 </header>
-                
 
                 <!-- About Section -->
                 <section id="about" class="p-6 bg-secondary rounded-lg shadow-primary">
@@ -84,17 +80,17 @@
                 <!-- Projects Section -->
                 <section id="projects" class="p-6 bg-secondary rounded-lg shadow-primary">
                     <h2 class="text-xl font-bold text-primary mb-4">Projects</h2>
-                    <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div id="project-list" class="grid grid-cols-1 gap-4">
                         <!-- Repositories will be dynamically added here -->
                     </div>
                 </section>
-                
+
                 <script>
                     async function fetchGitHubRepos() {
                         const username = 'cjron128';
                         const currentRepo = 'portfolio-website';
                         const apiUrl = `https://api.github.com/users/${username}/repos`;
-                
+
                         try {
                             const response = await fetch(apiUrl);
                             if (!response.ok) {
@@ -102,12 +98,12 @@
                             }
                             const repos = await response.json();
                             const filteredRepos = repos.filter(repo => repo.name !== currentRepo);
-                
+
                             const projectList = document.getElementById('project-list');
                             filteredRepos.forEach(repo => {
                                 const repoCard = document.createElement('div');
                                 repoCard.className = 'bg-primary p-4 rounded-lg shadow hover:shadow-lg transition text-accent-secondary';
-                
+
                                 repoCard.innerHTML = `
                                     <h3 class="font-bold text-lg mb-2">${repo.name}</h3>
                                     <p>${repo.description || 'No description provided.'}</p>
@@ -120,7 +116,7 @@
                             document.getElementById('project-list').innerHTML = `<p class="text-red-500">Failed to load projects.</p>`;
                         }
                     }
-                
+
                     // Fetch and display repos when the page loads
                     fetchGitHubRepos();
                 </script>
