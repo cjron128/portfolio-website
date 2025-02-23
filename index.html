@@ -38,13 +38,13 @@
 
         .outline-custom {
             outline-style: solid;
-            outline-width: 1px;
+            outline-width: 2px;
             outline-color: var(--accent1);
         }
 
         .outline-custom2 {
             outline-style: solid;
-            outline-width: 1px;
+            outline-width: 2px;
             outline-color: var(--accent4);
         }
 
@@ -114,7 +114,38 @@
             background: linear-gradient(to bottom, var(--shadow-primary) 30%, transparent 100%);
             pointer-events: none;
         }
+
+        .floating {
+            /* Ensure transform changes are smoothly transitioned */
+            transition: transform 0.5s ease;
+        }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.floating').forEach(el => {
+                let interval;
+
+                el.addEventListener('mouseenter', () => {
+                    // Clear any previous transition to avoid interference
+                    el.style.transition = "none";
+                    // Start an interval to randomly update the transform every 500ms
+                    interval = setInterval(() => {
+                        const x = Math.random() * 20 - 10; // random between -2px and 2px
+                        const y = Math.random() * 20 - 10;
+                        el.style.transition = "transform 4s ease";
+                        el.style.transform = `translate(${x}px, ${y}px)`;
+                    }, 2000);
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    clearInterval(interval);
+                    // Restore the transition so the element eases back to the original position
+                    el.style.transition = "transform 2s ease";
+                    el.style.transform = "translate(0, 0)";
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -123,10 +154,11 @@
     <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-4 px-72 ">
         <!-- About Section -->
         <div
-            class="row-span-4 col-span-3 bg-primary outline-custom text-accent2 px-6 py-20 flex flex-col justify-center rounded-lg">
+            class="row-span-4 col-span-3 bg-primary outline-custom text-accent2 px-6 py-20 flex flex-col justify-center rounded-lg floating">
             <div class="flex flex-row">
                 <div class="w-3/4 text-left">
-                    <p>Hi, I'm <span class="font-bold text-accent3">Christopher Ron</span>, a recent Computer Science graduate from Western Washington University.</p>
+                    <p>Hi, I'm <span class="font-bold text-accent3">Christopher Ron</span>, a recent Computer Science
+                        graduate from Western Washington University.</p>
                 </div>
                 <div class="w-1/4">
                     <img src="./assets/images/headshot.jpeg" alt="Profile" class="object-cover rounded-lg shadow-lg">
@@ -135,11 +167,11 @@
         </div>
 
         <!-- Placeholder Section -->
-        <div class="row-span-8 col-span-1 bg-primary outline-custom text-accent2 rounded-lg"></div>
+        <div class="row-span-8 col-span-1 bg-primary outline-custom text-accent2 rounded-lg floating"></div>
 
         <!-- Contact Info -->
         <div
-            class="row-span-4 col-span-1 bg-primary outline-custom text-accent2 text-center flex flex-col justify-center p-4 rounded-lg">
+            class="row-span-4 col-span-1 bg-primary outline-custom text-accent2 text-center flex flex-col justify-center p-4 rounded-lg floating">
             <h2 class="text-2xl font-bold mb-4">Contact</h2>
             <ul>
                 <li>Email: <a href="mailto:christopherjron@gmail.com"
@@ -153,11 +185,11 @@
 
         <!-- Projects Link -->
         <a href="#projects"
-            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl hover:opacity-60 transition rounded-lg">Projects</a>
+            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl hover:opacity-60 transition rounded-lg floating">Projects</a>
 
         <!-- Resume Link -->
         <a href="#resume"
-            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl hover:opacity-60 transition rounded-lg">Resume</a>
+            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl hover:opacity-60 transition rounded-lg floating">Resume</a>
     </div>
 </body>
 
