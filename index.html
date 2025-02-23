@@ -273,7 +273,11 @@
 
                             const description = document.createElement('p');
                             description.className = 'text-sm';
-                            description.textContent = repo.description || 'No description';
+                            if (repo.name == "portfolio-website") {
+                                description.textContent = "The code that makes this website work."
+                            } else {
+                                description.textContent = repo.description || 'No description';
+                            }
 
                             card.appendChild(title);
                             card.appendChild(description);
