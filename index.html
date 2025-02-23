@@ -10,7 +10,7 @@
     <style>
         :root {
             --primary: #181818;
-            --secondary: #2F4550;
+            --secondary: #8A4F7D;
             --accent1: #B0B0B0;
             --accent2: #B8DBD9;
             --accent3: #F4F4F9;
@@ -119,6 +119,18 @@
             /* Ensure transform changes are smoothly transitioned */
             transition: transform 0.5s ease;
         }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -128,6 +140,10 @@
                 el.addEventListener('mouseenter', () => {
                     // Clear any previous transition to avoid interference
                     el.style.transition = "none";
+                    const x = Math.random() * 20 - 10; // random between -2px and 2px
+                    const y = Math.random() * 20 - 10;
+                    el.style.transition = "transform 4s ease";
+                    el.style.transform = `translate(${x}px, ${y}px)`;
                     // Start an interval to randomly update the transform every 500ms
                     interval = setInterval(() => {
                         const x = Math.random() * 20 - 10; // random between -2px and 2px
@@ -140,7 +156,7 @@
                 el.addEventListener('mouseleave', () => {
                     clearInterval(interval);
                     // Restore the transition so the element eases back to the original position
-                    el.style.transition = "transform 2s ease";
+                    el.style.transition = "transform 4s ease";
                     el.style.transform = "translate(0, 0)";
                 });
             });
@@ -151,10 +167,10 @@
 <body>
     <div class="w-full h-full grid-overlay z-2"></div>
     <div class="w-full h-full color-overlay z-1"></div>
-    <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-4 px-72 ">
+    <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-5 px-72 ">
         <!-- About Section -->
         <div
-            class="row-span-4 col-span-3 bg-primary outline-custom text-accent2 px-6 py-20 flex flex-col justify-center rounded-lg floating">
+            class="row-span-4 col-span-3 bg-primary outline-custom text-accent2 px-6 py-20 flex flex-col justify-center rounded-lg floating hover:scale-105">
             <div class="flex flex-row">
                 <div class="w-3/4 text-left">
                     <p>Hi, I'm <span class="font-bold text-accent3">Christopher Ron</span>, a recent Computer Science
@@ -169,27 +185,142 @@
         <!-- Placeholder Section -->
         <div class="row-span-8 col-span-1 bg-primary outline-custom text-accent2 rounded-lg floating"></div>
 
-        <!-- Contact Info -->
+        <!-- Modified Contact Info (2 rows) -->
         <div
-            class="row-span-4 col-span-1 bg-primary outline-custom text-accent2 text-center flex flex-col justify-center p-4 rounded-lg floating">
-            <h2 class="text-2xl font-bold mb-4">Contact</h2>
-            <ul>
-                <li>Email: <a href="mailto:christopherjron@gmail.com"
-                        class="text-accent hover:underline">christopherjron@gmail.com</a></li>
-                <li>LinkedIn: <a href="https://linkedin.com/in/chrisron" target="_blank"
-                        class="text-accent hover:underline">linkedin.com/in/chrisron</a></li>
-                <li>GitHub: <a href="https://github.com/cjron128" target="_blank"
-                        class="text-accent hover:underline">github.com/cjron128</a></li>
-            </ul>
+            class="row-span-2 col-span-1 bg-primary outline-custom text-accent2 flex items-center justify-center p-4 rounded-lg ">
+            <div class="flex items-center space-x-5">
+                <span class="text-xl font-bold">Contact Me:</span>
+                <div class="flex space-x-5 ">
+                    <!-- Email Icon -->
+                    <a href="mailto:christopherjron@gmail.com" class="text-accent hover:text-accent2"
+                        aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6 floating">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 0a2 2 0 00-2-2H5a2 2 0 00-2 2m18 0v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8" />
+                        </svg>
+                    </a>
+                    <!-- LinkedIn Icon -->
+                    <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:text-accent2"
+                        aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 floating"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.2c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.2h-3v-4.5c0-1.07-.43-1.5-1.25-1.5-.68 0-1.09.45-1.25.88-.065.155-.08.37-.08.59v4.53h-3v-9h3v1.24c.4-.62 1.11-1.51 2.7-1.51 1.97 0 3.45 1.28 3.45 4.03v4.24z" />
+                        </svg>
+                    </a>
+                    <!-- GitHub Icon -->
+                    <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:text-accent2"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 floating"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.388-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.874.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.21v3.293c0 .322.21.696.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <!-- Projects Link -->
-        <a href="#projects"
-            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl hover:opacity-60 transition rounded-lg floating">Projects</a>
-
-        <!-- Resume Link -->
+        <!-- Resume Download -->
         <a href="#resume"
-            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl hover:opacity-60 transition rounded-lg floating">Resume</a>
+            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl transition rounded-lg floating">
+            Resume
+        </a>
+
+        <!-- Projects Section -->
+        <section id="projects"
+            class="row-span-2 col-span-3 bg-primary outline-custom2 text-accent4 rounded-lg flex flex-row justify-center">
+            <h2 class="text-xl font-bold mx-20 my-auto">Projects</h2>
+            <div class="flex flex-row items-center w-full justify-end my-auto px-6">
+                <!-- Left Arrow -->
+                <button id="prev" class="p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <!-- Repo Cards Container -->
+                <div id="projects-container" class="overflow-hidden mx-4 max-w-[500px] floating">
+                    <div id="projects-inner" class="flex gap-4 transition-transform duration-300 ">
+                        <!-- Repo cards will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Right Arrow -->
+                <button id="next" class="p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const projectsContainer = document.getElementById('projects-container');
+                const projectsInner = document.getElementById('projects-inner');
+                let currentIndex = 0;
+
+                // Function to update the carousel transform based on the container width and gap.
+                const updateCarousel = () => {
+                    const containerWidth = projectsContainer.clientWidth;
+                    // Retrieve the gap from computed styles (assumes gap is defined in pixels)
+                    const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
+                    // Each card occupies the full container width plus the gap (for all cards except the last)
+                    projectsInner.style.transform = `translateX(-${currentIndex * (containerWidth + gapValue)}px)`;
+                };
+
+                // Fetch GitHub repos and insert cards
+                fetch('https://api.github.com/users/cjron128/repos')
+                    .then(response => response.json())
+                    .then(repos => {
+                        repos.forEach(repo => {
+                            const card = document.createElement('a');
+                            card.href = repo.html_url;
+                            card.target = '_blank';
+                            // Each card takes full width of the container and won't shrink.
+                            card.className = 'bg-secondary text-accent3 p-4 rounded-lg w-full h-[100px] transition transform flex-shrink-0';
+
+                            const title = document.createElement('h3');
+                            title.className = 'font-bold text-lg mb-2';
+                            title.textContent = repo.name;
+
+                            const description = document.createElement('p');
+                            description.className = 'text-sm';
+                            description.textContent = repo.description || 'No description';
+
+                            card.appendChild(title);
+                            card.appendChild(description);
+                            projectsInner.appendChild(card);
+                        });
+                        // After cards are added, update the carousel transform.
+                        updateCarousel();
+                    });
+
+                // Arrow button scroll functionality
+                document.getElementById('prev').addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                });
+
+                document.getElementById('next').addEventListener('click', () => {
+                    const totalCards = projectsInner.children.length;
+                    if (currentIndex < totalCards - 1) {
+                        currentIndex++;
+                        updateCarousel();
+                    }
+                });
+
+                // Update carousel on window resize to recalc container width
+                window.addEventListener('resize', updateCarousel);
+            });
+        </script>
+
     </div>
 </body>
 
