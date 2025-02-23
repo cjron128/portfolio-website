@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chris Ron - Software Dev</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./assets/icons/laptop.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/icons/laptop.ico" type="image/x-icon" />
     <style>
         :root {
             --primary: #181818;
@@ -31,67 +31,29 @@
             overflow: hidden;
         }
 
-        .bg-primary {
+        .info-section {
             background: var(--primary);
-            opacity: 100;
-        }
-
-        .outline-custom {
             outline-style: solid;
             outline-width: 2px;
             outline-color: var(--accent1);
+            color: var(--accent3);
+            border-radius: 10px;
         }
 
-        .outline-custom2 {
+        .interact-section {
+            background: var(--primary);
             outline-style: solid;
             outline-width: 2px;
             outline-color: var(--accent4);
-        }
-
-        .bg-secondary {
-            background: var(--secondary);
-        }
-
-
-        .bg-accent1 {
-            background: var(--accent1);
-        }
-
-        .bg-accent2 {
-            background: var(--accent2);
-        }
-
-        .bg-accent3 {
-            background: var(--accent3);
-        }
-
-        .bg-accent4 {
-            background: var(--accent4);
-        }
-
-        .text-primary {
-            color: var(--primary);
-        }
-
-
-        .text-secondary {
-            color: var(--secondary);
-        }
-
-        .text-accent1 {
-            color: var(--accent1);
-        }
-
-        .text-accent2 {
-            color: var(--accent2);
-        }
-
-        .text-accent3 {
-            color: var(--accent3);
-        }
-
-        .text-accent4 {
             color: var(--accent4);
+            border-radius: 10px;
+        }
+
+        .repo-card {
+            background: var(--accent4);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 12px;
         }
 
         .grid-overlay {
@@ -140,13 +102,13 @@
                 el.addEventListener('mouseenter', () => {
                     // Clear any previous transition to avoid interference
                     el.style.transition = "none";
-                    const x = Math.random() * 20 - 10; // random between -2px and 2px
+                    const x = Math.random() * 20 - 10;
                     const y = Math.random() * 20 - 10;
                     el.style.transition = "transform 4s ease";
                     el.style.transform = `translate(${x}px, ${y}px)`;
-                    // Start an interval to randomly update the transform every 500ms
+                    // Start an interval to randomly update the transform every 2s
                     interval = setInterval(() => {
-                        const x = Math.random() * 20 - 10; // random between -2px and 2px
+                        const x = Math.random() * 20 - 10;
                         const y = Math.random() * 20 - 10;
                         el.style.transition = "transform 4s ease";
                         el.style.transform = `translate(${x}px, ${y}px)`;
@@ -167,11 +129,10 @@
 <body>
     <div class="w-full h-full grid-overlay z-2"></div>
     <div class="w-full h-full color-overlay z-1"></div>
-    <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-5 px-72 ">
+    <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-5 px-72">
         <!-- About Section -->
-        <div
-            class="row-span-4 col-span-3 bg-primary outline-custom text-accent2 px-6 py-20 flex flex-col justify-center rounded-lg floating hover:scale-105">
-            <div class="flex flex-row">
+        <div class="info-section col-start-1 row-span-4 col-span-3 px-10 py-10 flex flex-col justify-center">
+            <div class="flex flex-row-reverse gap-10">
                 <div class="w-3/4 text-left">
                     <p>Hi, I'm <span class="font-bold text-accent3">Christopher Ron</span>, a recent Computer Science
                         graduate from Western Washington University.</p>
@@ -182,18 +143,17 @@
             </div>
         </div>
 
-        <!-- Placeholder Section -->
-        <div class="row-span-8 col-span-1 bg-primary outline-custom text-accent2 rounded-lg floating"></div>
+        <!-- Right Placeholder Section -->
+        <div class="info-section col-start-4 row-span-8 col-span-1">
+        </div>
 
         <!-- Modified Contact Info (2 rows) -->
-        <div
-            class="row-span-2 col-span-1 bg-primary outline-custom text-accent2 flex items-center justify-center p-4 rounded-lg ">
+        <div class="info-section col-start-1 row-span-2 col-span-1 flex items-center justify-center p-4">
             <div class="flex items-center space-x-5">
-                <span class="text-xl font-bold">Contact Me:</span>
-                <div class="flex space-x-5 ">
+                <span class="text-xl font-bold">Links:</span>
+                <div class="flex space-x-5">
                     <!-- Email Icon -->
-                    <a href="mailto:christopherjron@gmail.com" class="text-accent hover:text-accent2"
-                        aria-label="Email">
+                    <a href="mailto:christopherjron@gmail.com" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             class="w-6 h-6 floating">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -222,15 +182,34 @@
             </div>
         </div>
 
-        <!-- Resume Download -->
-        <a href="#resume"
-            class="row-span-2 col-span-2 flex items-center justify-center bg-primary outline-custom2 text-accent4 font-bold text-xl transition rounded-lg floating">
-            Resume
-        </a>
+        <!-- Resume Download (Modified to span 1 row and 1 col with download icon) -->
+        <button href="#" onclick="alert('Download Resume placeholder')"
+            class="interact-section floating col-start-2 row-span-1 col-span-1 flex items-center justify-center font-bold text-xl transition">
+            <span>Resume</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                class="w-6 h-6 ml-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+            </svg>
+        </button>
+
+        <!-- New Placeholder Section A (Filling freed cell at row 5, col 3) -->
+        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
+            Placeholder A
+        </div>
+
+        <!-- New Placeholder Section B (Filling freed cell at row 6, col 2) -->
+        <div class="info-section col-start-2 row-span-1 col-span-1 flex items-center justify-center">
+            Placeholder B
+        </div>
+
+        <!-- New Placeholder Section C (Filling freed cell at row 6, col 3) -->
+        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
+            Placeholder C
+        </div>
 
         <!-- Projects Section -->
-        <section id="projects"
-            class="row-span-2 col-span-3 bg-primary outline-custom2 text-accent4 rounded-lg flex flex-row justify-center">
+        <section id="projects" class="interact-section col-start-1 row-span-2 col-span-3 flex flex-row justify-center">
             <h2 class="text-xl font-bold mx-20 my-auto">Projects</h2>
             <div class="flex flex-row items-center w-full justify-end my-auto px-6">
                 <!-- Left Arrow -->
@@ -267,9 +246,7 @@
                 // Function to update the carousel transform based on the container width and gap.
                 const updateCarousel = () => {
                     const containerWidth = projectsContainer.clientWidth;
-                    // Retrieve the gap from computed styles (assumes gap is defined in pixels)
                     const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
-                    // Each card occupies the full container width plus the gap (for all cards except the last)
                     projectsInner.style.transform = `translateX(-${currentIndex * (containerWidth + gapValue)}px)`;
                 };
 
@@ -277,12 +254,18 @@
                 fetch('https://api.github.com/users/cjron128/repos')
                     .then(response => response.json())
                     .then(repos => {
+                        repos.sort((a, b) => {
+                            if (a.name.toLowerCase() === 'java-chatbot') return -1;
+                            if (b.name.toLowerCase() === 'java-chatbot') return 1;
+                            if (a.name.toLowerCase() === 'portfolio-website') return -1;
+                            if (b.name.toLowerCase() === 'portfolio-website') return 1;
+                            return 0;
+                        });
                         repos.forEach(repo => {
                             const card = document.createElement('a');
                             card.href = repo.html_url;
                             card.target = '_blank';
-                            // Each card takes full width of the container and won't shrink.
-                            card.className = 'bg-secondary text-accent3 p-4 rounded-lg w-full h-[100px] transition transform flex-shrink-0';
+                            card.className = 'repo-card w-full h-[100px] transition transform flex-shrink-0';
 
                             const title = document.createElement('h3');
                             title.className = 'font-bold text-lg mb-2';
@@ -294,9 +277,9 @@
 
                             card.appendChild(title);
                             card.appendChild(description);
+                            console.log(repo.name);
                             projectsInner.appendChild(card);
                         });
-                        // After cards are added, update the carousel transform.
                         updateCarousel();
                     });
 
@@ -316,7 +299,6 @@
                     }
                 });
 
-                // Update carousel on window resize to recalc container width
                 window.addEventListener('resize', updateCarousel);
             });
         </script>
