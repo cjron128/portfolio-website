@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEVEL 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+    }
+    canvas {
+      background: #000;
+      display: block;
+      margin: 0 auto;
+      border: 2px solid #fff;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+  <canvas id="gameCanvas" width="600" height="400"></canvas>
+  <script>
+    // Get the canvas and context
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
+    // Player properties
+    const player = {
+      width: 40,
+      height: 20,
+      x: canvasWidth / 2 - 20,
+      y: canvasHeight - 30,
+      speed: 5,
+      dx: 0
+    };
+
+    // Bullet properties
+    let bullets = [];
+    const bulletSpeed = 7;
+
+    // Invader properties
+    const invaderRows = 3;
+    const invaderCols = 8;
+    const invaderWidth = 30;
+    const invaderHeight = 20;
+    const invaderPadding = 10;
+    const invaderOffsetTop = 30;
+    const invaderOffsetLeft = 30;
+    let invaders = [];
+    let invaderDirection = 1; // 1 moves right, -1 moves left
+    const invaderSpeed = 1;
+    const invaderStepDown = 20;
+
+    // Initialize invaders grid
+    for (let r = 0; r < invaderRows; r++) {
+      invaders[r] = [];
+      for (let c = 0; c < invaderCols; c++) {
+        const x = invaderOffsetLeft + c * (invaderWidth + invaderPadding);
+        const y = invaderOffsetTop + r * (invaderHeight + invaderPadding);
+        invaders[r][c] = { x, y, status: 1 };
+      }
+    }
+
+    // Draw player as a green rectangle
+    function drawPlayer() {
+      ctx.fillStyle = '#00ff00';
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    }
+
+    // Draw invaders as red rectangles
+    function drawInvaders() {
+      ctx.fillStyle = '#ff0000';
+      for (let r = 0; r < invaderRows; r++) {
+        for (let c = 0; c < invaderCols; c++) {
+          const inv = invaders[r][c];
+          if (inv.status === 1) {
+            ctx.fillRect(inv.x, inv.y, invaderWidth, invaderHeight);
+          }
+        }
+      }
+    }
+
+    // Draw bullets as yellow rectangles
+    function drawBullets() {
+      ctx.fillStyle = '#ffff00';
+      bullets.forEach(bullet => {
+        ctx.fillRect(bullet.x, bullet.y, 4, 10);
+      });
+    }
+
+    // Update player position and ensure it stays within the canvas
+    function movePlayer() {
+      player.x += player.dx;
+      if (player.x < 0) {
+        player.x = 0;
+      } else if (player.x + player.width > canvasWidth) {
+        player.x = canvasWidth - player.width;
+      }
+    }
+
+    // Update bullet positions and remove bullets off-screen
+    function moveBullets() {
+      bullets.forEach((bullet, index) => {
+        bullet.y -= bulletSpeed;
+        if (bullet.y < 0) {
+          bullets.splice(index, 1);
+        }
+      });
+    }
+
+    // Move invaders and reverse direction if reaching canvas boundaries
+    function moveInvaders() {
+      let shouldChangeDirection = false;
+      for (let r = 0; r < invaderRows; r++) {
+        for (let c = 0; c < invaderCols; c++) {
+          const inv = invaders[r][c];
+          if (inv.status === 1) {
+            inv.x += invaderSpeed * invaderDirection;
+            if (inv.x + invaderWidth > canvasWidth || inv.x < 0) {
+              shouldChangeDirection = true;
+            }
+          }
+        }
+      }
+      if (shouldChangeDirection) {
+        invaderDirection *= -1;
+        for (let r = 0; r < invaderRows; r++) {
+          for (let c = 0; c < invaderCols; c++) {
+            const inv = invaders[r][c];
+            if (inv.status === 1) {
+              inv.y += invaderStepDown;
+            }
+          }
+        }
+      }
+    }
+
+    // Check for collisions between bullets and invaders
+    function checkCollisions() {
+      bullets.forEach((bullet, bIndex) => {
+        for (let r = 0; r < invaderRows; r++) {
+          for (let c = 0; c < invaderCols; c++) {
+            const inv = invaders[r][c];
+            if (inv.status === 1 &&
+                bullet.x > inv.x && bullet.x < inv.x + invaderWidth &&
+                bullet.y > inv.y && bullet.y < inv.y + invaderHeight) {
+              inv.status = 0;
+              bullets.splice(bIndex, 1);
+            }
+          }
+        }
+      });
+    }
+
+    // Check if any invader has reached the player's level (game over)
+    function checkGameOver() {
+      for (let r = 0; r < invaderRows; r++) {
+        for (let c = 0; c < invaderCols; c++) {
+          const inv = invaders[r][c];
+          if (inv.status === 1 && inv.y + invaderHeight >= player.y) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Clear the canvas
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
+
+    // Draw all game elements
+    function draw() {
+      clearCanvas();
+      drawPlayer();
+      drawInvaders();
+      drawBullets();
+    }
+
+    // Main update function: update game state and redraw
+    function update() {
+      movePlayer();
+      moveBullets();
+      moveInvaders();
+      checkCollisions();
+      draw();
+
+      if (checkGameOver()) {
+        alert('Game Over!');
+        document.location.reload();
+      } else {
+        requestAnimationFrame(update);
+      }
+    }
+
+    // Handle keydown events for movement and shooting
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a') {
+        player.dx = -player.speed;
+      } else if (e.key === 'ArrowRight' || e.key === 'd') {
+        player.dx = player.speed;
+      } else if (e.key === ' ' || e.key === 'ArrowUp') {
+        // Create a new bullet from the center of the player
+        bullets.push({ x: player.x + player.width / 2 - 2, y: player.y });
+      }
+    });
+
+    // Stop player movement when key is released
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'ArrowRight' || e.key === 'd') {
+        player.dx = 0;
+      }
+    });
+
+    // Start the game loop
+    update();
+  </script>
+</body>
+</html>

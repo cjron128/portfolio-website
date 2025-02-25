@@ -1,138 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chris Ron - Dev Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chris Ron - Software Dev</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./assets/icons/laptop.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/icons/laptop.ico" type="image/x-icon" />
     <style>
-        /* Define CSS custom properties with generic names */
         :root {
-            --background-primary: #2f4858; /* Main background color */
-            --background-secondary: #33658a; /* Secondary background color */
-            --header-background: #55251D; /* Header background color */
-            --text-primary: #edf2f4; /* Primary text color */
-            --accent-primary: #D7D9B1; /* Primary accent color */
-            --accent-secondary: #76B041; /* Secondary accent color */
-            --shadow-primary: color-mix(in srgb, var(--background-primary) 70%, black); /* Darker version of background-primary */
+            --primary: #181818;
+            --secondary: #8A4F7D;
+            --accent1: #f1f1f1;
+            --accent2: #aafaf5;
+            --accent3: #F4F4F9;
+            --accent4: #D4C5E2;
+            --shadow-primary: color-mix(in srgb, var(--primary) 70%, black);
+            --fade-primary: color-mix(in srgb, var(--shadow-primary) 75%, transparent);
+            --muted-accent1: color-mix(in srgb, var(--accent1) 50%, transparent);
         }
 
         body {
-            background-color: var(--background-primary);
-            color: var(--text-primary);
+            background: var(--shadow-primary);
+            color: var(--primary);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .bg-primary {
-            background-color: var(--background-primary);
+        .gauntlet-button {
+            background: var(--accent1);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 12px;
         }
 
-        .bg-secondary {
-            background-color: var(--background-secondary);
+        .info-section {
+            background: var(--primary);
+            outline-style: solid;
+            outline-width: 2px;
+            outline-color: var(--accent2);
+            color: var(--accent1);
+            border-radius: 10px;
         }
 
-        .bg-header {
-            background-color: var(--header-background);
+        .interact-section {
+            background: var(--primary);
+            outline-style: solid;
+            outline-width: 2px;
+            outline-color: var(--accent4);
+            color: var(--accent4);
+            border-radius: 10px;
         }
 
-        .text-primary {
-            color: var(--text-primary);
+        .repo-card {
+            background: var(--accent4);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 12px;
         }
 
-        .text-accent {
-            color: var(--accent-primary);
+        .song-card {
+            background: var(--accent4);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 12px;
         }
 
-        .text-accent-secondary {
-            color: var(--accent-secondary);
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            background-image:
+                linear-gradient(to bottom, var(--muted-accent1) 1px, transparent 0px),
+                linear-gradient(to right, var(--muted-accent1) 1px, transparent 0px);
+            background-size: 80px 80px;
         }
 
-        .shadow-primary {
-            box-shadow: 0 4px 6px var(--shadow-primary);
+        .color-overlay {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, var(--shadow-primary) 1px, var(--fade-primary) 60%, transparent 80%);
+            pointer-events: none;
+        }
+
+        .floating {
+            /* Ensure transform changes are smoothly transitioned */
+            transition: transform 0.5s ease;
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .flash {
+            animation: flash 1.5s infinite;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.floating').forEach(el => {
+                let interval;
+                el.addEventListener('mouseenter', () => {
+                    el.classList.add('flash');
+                    el.style.transition = "transform 2s ease-in-out";
+                    let direction = 1;
+                    el.style.transform = `translateY(${direction * 3}px)`;
+                    direction = -direction;
+                    // Change vertical position every 2 seconds
+                    interval = setInterval(() => {
+                        el.style.transform = `translateY(${direction * 3}px)`;
+                        direction = -direction;
+                    }, 2000);
+                });
+                el.addEventListener('mouseleave', () => {
+                    clearInterval(interval);
+                    el.classList.remove('flash');
+                    el.style.transition = "transform 1s ease-in-out";
+                    el.style.transform = "translateY(0)";
+                });
+            });
+        });
+    </script>
 </head>
-<body class="font-sans leading-normal tracking-normal">
-    <!-- Main Container -->
-    <div class="grid grid-cols-1 md:grid-cols-4 md:h-screen">
-        <!-- Fixed Image Column -->
-        <div class="bg-primary md:col-span-2 h-64 md:h-full" style="background-image: url('./assets/images/background2.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
-        <!-- Scrollable Content Column -->
-        <div class="col-span-2 overflow-y-auto p-6">
-            <div class="space-y-8">
-                <!-- Header -->
-                <header class="sticky top-0 bg-header text-primary rounded-t-lg p-4 z-10 shadow-primary">
-                    <h1 class="text-2xl font-bold">Hi, I'm Christopher Ron</h1>
-                </header>
+<body>
+    <div class="w-full h-full grid-overlay z-2"></div>
+    <div class="w-full h-full color-overlay z-1"></div>
+    <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-5 px-72">
+        <!-- About Section -->
+        <div class="info-section col-start-1 row-span-4 col-span-3 px-10 py-10 flex flex-col justify-center">
+            <div class="flex flex-row-reverse gap-10">
+                <div class="w-3/4 text-left">
+                    <p>Hi, I'm <span class="font-bold text-[var(--accent2)]">Christopher Ron</span>, a recent Computer
+                        Science
+                        graduate from <span class="font-bold text-[var(--accent2)]">Western Washington
+                            University</span>.</p>
 
-                <!-- About Section -->
-                <section id="about" class="p-6 bg-secondary rounded-lg shadow-primary">
-                    <h2 class="text-xl font-bold text-primary mb-4">About Me</h2>
-                    <p>
-                        I am a recent Computer Science graduate (December 2024) with experience in Java, Python, and JavaScript.
+                    <p class="mt-4">I love <span class="font-bold text-[var(--accent2)]">building things</span>—whether
+                        it’s
+                        writing <span class="font-bold text-[var(--accent2)]">clean, efficient code</span>, optimizing a
+                        system for
+                        performance,
+                        or solving a tricky problem. I find the most fulfillment in <span
+                            class="font-bold text-[var(--accent2)]">bringing
+                            ideas to life</span>
+                        through thoughtful design, problem-solving, and a drive for innovation.</p>
+
+                    <p class="mt-4">When I’m not at my desk, you’ll probably find me
+                        <span class="font-bold text-[var(--accent2)]">lifting at the gym</span>,
+                        <span class="font-bold text-[var(--accent2)]">experimenting in the kitchen</span>,
+                        <span class="font-bold text-[var(--accent2)]">modding old Nintendo consoles</span>, or
+                        <span class="font-bold text-[var(--accent2)]">playing guitar</span>.
+                        I love <span class="font-bold text-[var(--accent2)]">tinkering</span>—whether it’s with code,
+                        hardware, or a new
+                        recipe.
+                        Let’s connect and talk about <span class="font-bold text-[var(--accent2)]">what you're
+                            building</span>!
                     </p>
-                    <p class="mt-4">
-                        I'm eager to create impactful software solutions—let's connect!
-                    </p>
-                </section>
-
-                <!-- Projects Section -->
-                <section id="projects" class="p-6 bg-secondary rounded-lg shadow-primary">
-                    <h2 class="text-xl font-bold text-primary mb-4">Projects</h2>
-                    <div id="project-list" class="grid grid-cols-1 gap-4">
-                        <!-- Repositories will be dynamically added here -->
-                    </div>
-                </section>
-
-                <script>
-                    async function fetchGitHubRepos() {
-                        const username = 'cjron128';
-                        const currentRepo = 'portfolio-website';
-                        const apiUrl = `https://api.github.com/users/${username}/repos`;
-
-                        try {
-                            const response = await fetch(apiUrl);
-                            if (!response.ok) {
-                                throw new Error(`GitHub API returned status: ${response.status}`);
-                            }
-                            const repos = await response.json();
-                            const filteredRepos = repos.filter(repo => repo.name !== currentRepo);
-
-                            const projectList = document.getElementById('project-list');
-                            filteredRepos.forEach(repo => {
-                                const repoCard = document.createElement('div');
-                                repoCard.className = 'bg-primary p-4 rounded-lg shadow hover:shadow-lg transition text-accent-secondary';
-
-                                repoCard.innerHTML = `
-                                    <h3 class="font-bold text-lg mb-2">${repo.name}</h3>
-                                    <p>${repo.description || 'No description provided.'}</p>
-                                    <a href="${repo.html_url}" target="_blank" class="text-accent hover:underline mt-2 inline-block">View on GitHub</a>
-                                `;
-                                projectList.appendChild(repoCard);
-                            });
-                        } catch (error) {
-                            console.error('Error fetching repositories:', error);
-                            document.getElementById('project-list').innerHTML = `<p class="text-red-500">Failed to load projects.</p>`;
-                        }
-                    }
-
-                    // Fetch and display repos when the page loads
-                    fetchGitHubRepos();
-                </script>
-
-                <!-- Contact Section -->
-                <section id="contact" class="p-6 bg-secondary rounded-lg shadow-primary">
-                    <h2 class="text-xl font-bold text-primary mb-4">Contact</h2>
-                    <p>Feel free to reach out to me to discuss how I can contribute to your team:</p>
-                    <ul class="bg-primary mt-2 p-4 rounded-lg text-accent-secondary">
-                        <li>Email: <a href="mailto:christopherjron@gmail.com" class="text-accent hover:underline">christopherjron@gmail.com</a></li>
-                        <li>LinkedIn: <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:underline">linkedin.com/in/chrisron</a></li>
-                        <li>GitHub: <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:underline">https://github.com/cjron128</a></li>
-                    </ul>
-                </section>
+                </div>
+                <div class="w-1/4 my-auto">
+                    <img src="./assets/images/headshot.jpeg" alt="Profile" class="object-cover rounded-lg shadow-lg">
+                </div>
             </div>
         </div>
+
+
+
+
+        <!-- My Toolbox -->
+        <div class="info-section col-start-4 row-span-7 col-span-1 px-10 py-10 flex flex-col space-y-12">
+            <h3 class="text-2xl font-bold text-[var(--accent2)]">My Toolbox</h3>
+
+            <!-- Programming Languages -->
+            <div>
+                <div class="mb-2">
+                    <h4 class="text-lg font-semibold text-[var(--accent2)] text-nowrap">💻 Programming Languages</h4>
+                </div>
+                <ul class="list-disc list-inside">
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>TypeScript</li>
+                    <li>SQL</li>
+                    <li>C</li>
+                    <li>C++</li>
+                </ul>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div>
+                <div class="mb-2">
+                    <h4 class="text-lg font-semibold text-[var(--accent2)]">🛠 Tools &amp; Technologies</h4>
+                </div>
+                <ul class="list-disc list-inside text-sm space-y-4">
+                    <li><strong>Backend:</strong> Node.js, Supabase, PostgreSQL, REST APIs</li>
+                    <li><strong>Frontend:</strong> React.js, Vite, Tailwind, Three.js</li>
+                    <li><strong>Cloud &amp; DevOps:</strong> AWS, CI/CD, GitHub Actions</li>
+                    <li><strong>Other:</strong> Stripe, API Testing, Logging, Monitoring</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Links -->
+        <div class="interact-section col-start-1 row-span-2 col-span-1 flex items-center justify-center p-4">
+            <div class="flex items-center space-x-5">
+                <span class="text-xl font-bold">Links:</span>
+                <div class="flex space-x-5 ">
+                    <!-- Email Icon -->
+                    <a href="mailto:christopherjron@gmail.com" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-8 h-8 floating">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 0a2 2 0 00-2-2H5a2 2 0 00-2 2m18 0v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8" />
+                        </svg>
+                    </a>
+                    <!-- LinkedIn Icon -->
+                    <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:text-accent2"
+                        aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.2c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.2h-3v-4.5c0-1.07-.43-1.5-1.25-1.5-.68 0-1.09.45-1.25.88-.065.155-.08.37-.08.59v4.53h-3v-9h3v1.24c.4-.62 1.11-1.51 2.7-1.51 1.97 0 3.45 1.28 3.45 4.03v4.24z" />
+                        </svg>
+                    </a>
+                    <!-- GitHub Icon -->
+                    <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:text-accent2"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.388-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.874.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.21v3.293c0 .322.21.696.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Run The Gauntlet -->
+        <div class="interact-section col-start-2 row-span-1 col-span-1 flex items-center justify-center relative">
+            <a href="./misc/gauntlet-start.html" id="gauntletButton"
+                class="px-4 py-2 gauntlet-button floating font-bold transition opacity-50 pointer-events-none">
+                RUN THE GAUNTLET
+            </a>
+            <!-- Lock icon overlay (positioned absolutely over the button) -->
+            <div id="lockOverlay" class="absolute inset-0 flex items-center justify-center pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
+                    viewBox="0 0 24 24">
+                    <path d="M12 17a2 2 0 002-2v-2a2 2 0 10-4 0v2a2 2 0 002 2z" />
+                    <path fill-rule="evenodd"
+                        d="M5 9V7a7 7 0 1114 0v2h1a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10a1 1 0 011-1h1zm2-2a5 5 0 0110 0v2H7V7z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Define the Konami sequence
+                const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+                let konamiIndex = 0;
+
+                // Get references to the button and lock overlay
+                const button = document.getElementById('gauntletButton');
+                const lockOverlay = document.getElementById('lockOverlay');
+
+                // Listen for keydown events for the Konami code
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === konamiCode[konamiIndex]) {
+                        konamiIndex++;
+                        // If the entire sequence has been entered
+                        if (konamiIndex === konamiCode.length) {
+                            // Enable the button by restoring full opacity and pointer events
+                            button.classList.remove('opacity-50', 'pointer-events-none');
+                            button.style.opacity = '1';
+                            // Remove the lock icon overlay
+                            if (lockOverlay) {
+                                lockOverlay.remove();
+                            }
+                            // Reset the sequence index (optional)
+                            konamiIndex = 0;
+                        }
+                    } else {
+                        // Reset if a wrong key is pressed
+                        konamiIndex = 0;
+                    }
+                });
+
+                // Listen for clicks on the lock overlay to display a message if still locked
+                if (lockOverlay) {
+                    lockOverlay.addEventListener('click', (e) => {
+                        alert("code required to unlock");
+                    });
+                }
+            });
+        </script>
+
+
+
+
+        <!-- New Placeholder Section A (Filling freed cell at row 5, col 3) -->
+        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
+            Placeholder A
+        </div>
+
+        <!-- Song Recommendations Section -->
+        <section id="songs"
+            class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row justify-between p-4">
+            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Rec Lucky Draw</h2>
+            <div class="flex flex-row mx-4">
+                <!-- Song Card Container -->
+                <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] floating">
+                    <!-- Random song card will be inserted here -->
+                </div>
+                <!-- Reset Icon -->
+                <button id="song-reset" class=" z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6 floating">
+                        <path d="M2.5 2v6h6M21.5 22v-6h-6" />
+                        <path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                let songs = [];
+
+                function displayRandomSong() {
+                    if (songs.length === 0) return;
+                    const randomIndex = Math.floor(Math.random() * songs.length);
+                    const selectedLine = songs[randomIndex];
+                    const parts = selectedLine.split(':');
+                    if (parts.length >= 2) {
+                        const songName = parts[0].trim();
+                        const songLink = parts.slice(1).join(':').trim();
+                        const card = document.createElement('a');
+                        card.href = songLink;
+                        card.target = '_blank';
+                        card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
+                        card.textContent = songName;
+                        const container = document.getElementById('song-card-container');
+                        container.innerHTML = ''; // Clear previous song card
+                        container.appendChild(card);
+                    } else {
+                        console.error("Song line format invalid:", selectedLine);
+                    }
+                }
+
+                // Fetch the songs from the text file and display a random song
+                fetch('./assets/data/songs.txt')
+                    .then(response => response.text())
+                    .then(data => {
+                        songs = data.split('\n').filter(line => line.trim() !== '');
+                        displayRandomSong();
+                    })
+                    .catch(error => {
+                        console.error('Error loading song recommendations:', error);
+                        const container = document.getElementById('song-card-container');
+                        container.textContent = 'Unable to load song recommendations.';
+                    });
+
+                // When the reset icon is clicked, display a new random song
+                document.getElementById('song-reset').addEventListener('click', () => {
+                    displayRandomSong();
+                });
+            });
+        </script>
+
+
+
+
+        <!-- Projects Section -->
+        <section id="projects" class="interact-section col-start-1 row-span-2 col-span-3 flex flex-row justify-center">
+            <h2 class="text-xl font-bold mx-20 my-auto">Projects</h2>
+            <div class="flex flex-row items-center w-full justify-end my-auto px-6">
+                <!-- Left Arrow -->
+                <button id="prev" class="p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <!-- Repo Cards Container -->
+                <div id="projects-container" class="overflow-hidden mx-4 max-w-[500px] floating">
+                    <div id="projects-inner" class="flex gap-4 transition-transform duration-300 ">
+                        <!-- Repo cards will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Right Arrow -->
+                <button id="next" class="p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const projectsContainer = document.getElementById('projects-container');
+                const projectsInner = document.getElementById('projects-inner');
+                let currentIndex = 0;
+
+                // Function to update the carousel transform based on the container width and gap.
+                const updateCarousel = () => {
+                    const containerWidth = projectsContainer.clientWidth;
+                    const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
+                    projectsInner.style.transform = `translateX(-${currentIndex * (containerWidth + gapValue)}px)`;
+                };
+
+                // Fetch GitHub repos and insert cards
+                fetch('https://api.github.com/users/cjron128/repos')
+                    .then(response => response.json())
+                    .then(repos => {
+                        repos.sort((a, b) => {
+                            if (a.name.toLowerCase() === 'java-chatbot') return -1;
+                            if (b.name.toLowerCase() === 'java-chatbot') return 1;
+                            if (a.name.toLowerCase() === 'portfolio-website') return -1;
+                            if (b.name.toLowerCase() === 'portfolio-website') return 1;
+                            return 0;
+                        });
+                        repos.forEach(repo => {
+                            const card = document.createElement('a');
+                            card.href = repo.html_url;
+                            card.target = '_blank';
+                            card.className = 'repo-card w-full h-[100px] transition transform flex-shrink-0';
+
+                            const title = document.createElement('h3');
+                            title.className = 'font-bold text-lg mb-2';
+                            title.textContent = repo.name;
+
+                            const description = document.createElement('p');
+                            description.className = 'text-sm';
+                            if (repo.name == "portfolio-website") {
+                                description.textContent = "The code that makes this website work."
+                            } else {
+                                description.textContent = repo.description || 'No description';
+                            }
+
+                            card.appendChild(title);
+                            card.appendChild(description);
+                            console.log(repo.name);
+                            projectsInner.appendChild(card);
+                        });
+                        updateCarousel();
+                    });
+
+                // Arrow button scroll functionality
+                document.getElementById('prev').addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                });
+
+                document.getElementById('next').addEventListener('click', () => {
+                    const totalCards = projectsInner.children.length;
+                    if (currentIndex < totalCards - 1) {
+                        currentIndex++;
+                        updateCarousel();
+                    }
+                });
+
+                window.addEventListener('resize', updateCarousel);
+            });
+        </script>
+
+
+
+        <!-- Resume Download -->
+        <button href="./assets/resume/resume.pdf" download
+            class="col-start-4 row-span-1 col-span-1 flex items-center justify-center interact-section font-bold text-xl floating">
+            <span>Resume</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                class="w-6 h-6 ml-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+            </svg>
+        </button>
+
     </div>
 </body>
+
 </html>
