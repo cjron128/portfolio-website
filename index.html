@@ -82,6 +82,24 @@
             transition: transform 0.5s ease;
         }
 
+        @keyframes flash {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .flash {
+            animation: flash 1.5s infinite;
+        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -98,28 +116,23 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('.floating').forEach(el => {
                 let interval;
-
                 el.addEventListener('mouseenter', () => {
-                    // Clear any previous transition to avoid interference
-                    el.style.transition = "none";
-                    const x = Math.random() * 20 - 10;
-                    const y = Math.random() * 20 - 10;
-                    el.style.transition = "transform 4s ease";
-                    el.style.transform = `translate(${x}px, ${y}px)`;
-                    // Start an interval to randomly update the transform every 2s
+                    el.classList.add('flash');
+                    el.style.transition = "transform 2s ease-in-out";
+                    let direction = 1;
+                    el.style.transform = `translateY(${direction * 3}px)`;
+                    direction = -direction;
+                    // Change vertical position every 2 seconds
                     interval = setInterval(() => {
-                        const x = Math.random() * 20 - 10;
-                        const y = Math.random() * 20 - 10;
-                        el.style.transition = "transform 4s ease";
-                        el.style.transform = `translate(${x}px, ${y}px)`;
+                        el.style.transform = `translateY(${direction * 3}px)`;
+                        direction = -direction;
                     }, 2000);
                 });
-
                 el.addEventListener('mouseleave', () => {
                     clearInterval(interval);
-                    // Restore the transition so the element eases back to the original position
-                    el.style.transition = "transform 4s ease";
-                    el.style.transform = "translate(0, 0)";
+                    el.classList.remove('flash');
+                    el.style.transition = "transform 1s ease-in-out";
+                    el.style.transform = "translateY(0)";
                 });
             });
         });
@@ -135,13 +148,33 @@
             <div class="flex flex-row-reverse gap-10">
                 <div class="w-3/4 text-left">
                     <p>Hi, I'm <span class="font-bold text-accent3">Christopher Ron</span>, a recent Computer Science
-                        graduate from Western Washington University.</p>
+                        graduate from <span class="font-bold text-accent3">Western Washington University</span>.</p>
+
+                    <p class="mt-4">I love <span class="font-bold text-accent3">building things</span>—whether it’s
+                        writing <span class="font-bold">clean, efficient code</span>, optimizing a system for
+                        performance,
+                        or solving a tricky problem. I find the most fulfillment in <span class="font-bold">bringing
+                            ideas to life</span>
+                        through thoughtful design, problem-solving, and a drive for innovation.</p>
+
+                    <p class="mt-4">When I’m not at my desk, you’ll probably find me
+                        <span class="font-bold">lifting at the gym</span>,
+                        <span class="font-bold">experimenting in the kitchen</span>,
+                        <span class="font-bold">modding old Nintendo consoles</span>, or
+                        <span class="font-bold">playing guitar</span>.
+                        I love <span class="font-bold">tinkering</span>—whether it’s with code, hardware, or a new
+                        recipe.
+                        Let’s connect and talk about <span class="font-bold text-accent3">what you're building</span>!
+                    </p>
                 </div>
-                <div class="w-1/4">
+                <div class="w-1/4 my-auto">
                     <img src="./assets/images/headshot.jpeg" alt="Profile" class="object-cover rounded-lg shadow-lg">
                 </div>
             </div>
         </div>
+
+
+
 
         <!-- Right Placeholder Section -->
         <div class="info-section col-start-4 row-span-8 col-span-1">
@@ -155,15 +188,15 @@
                     <!-- Email Icon -->
                     <a href="mailto:christopherjron@gmail.com" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            class="w-6 h-6 floating">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            class="w-8 h-8 floating">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 0a2 2 0 00-2-2H5a2 2 0 00-2 2m18 0v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8" />
                         </svg>
                     </a>
                     <!-- LinkedIn Icon -->
                     <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:text-accent2"
                         aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 floating"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
                             viewBox="0 0 24 24">
                             <path
                                 d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.2c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.2h-3v-4.5c0-1.07-.43-1.5-1.25-1.5-.68 0-1.09.45-1.25.88-.065.155-.08.37-.08.59v4.53h-3v-9h3v1.24c.4-.62 1.11-1.51 2.7-1.51 1.97 0 3.45 1.28 3.45 4.03v4.24z" />
@@ -172,7 +205,7 @@
                     <!-- GitHub Icon -->
                     <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:text-accent2"
                         aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 floating"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
                             viewBox="0 0 24 24">
                             <path
                                 d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.388-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.874.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.21v3.293c0 .322.21.696.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
