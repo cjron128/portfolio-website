@@ -32,6 +32,13 @@
             overflow: hidden;
         }
 
+        .gauntlet-button {
+            background: var(--accent1);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
         .info-section {
             background: var(--primary);
             outline-style: solid;
@@ -261,10 +268,67 @@
             </div>
         </div>
 
-        <!-- New Placeholder Section B -->
-        <div class="info-section col-start-2 row-span-1 col-span-1 flex items-center justify-center">
-            Placeholder B
+
+        <!-- Run The Gauntlet -->
+        <div class="interact-section col-start-2 row-span-1 col-span-1 flex items-center justify-center relative">
+            <a href="./gauntlet-start.html" id="gauntletButton"
+                class="px-4 py-2 gauntlet-button floating font-bold transition opacity-50 pointer-events-none">
+                RUN THE GAUNTLET
+            </a>
+            <!-- Lock icon overlay (positioned absolutely over the button) -->
+            <div id="lockOverlay" class="absolute inset-0 flex items-center justify-center pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
+                    viewBox="0 0 24 24">
+                    <path d="M12 17a2 2 0 002-2v-2a2 2 0 10-4 0v2a2 2 0 002 2z" />
+                    <path fill-rule="evenodd"
+                        d="M5 9V7a7 7 0 1114 0v2h1a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10a1 1 0 011-1h1zm2-2a5 5 0 0110 0v2H7V7z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Define the Konami sequence
+                const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+                let konamiIndex = 0;
+
+                // Get references to the button and lock overlay
+                const button = document.getElementById('gauntletButton');
+                const lockOverlay = document.getElementById('lockOverlay');
+
+                // Listen for keydown events for the Konami code
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === konamiCode[konamiIndex]) {
+                        konamiIndex++;
+                        // If the entire sequence has been entered
+                        if (konamiIndex === konamiCode.length) {
+                            // Enable the button by restoring full opacity and pointer events
+                            button.classList.remove('opacity-50', 'pointer-events-none');
+                            button.style.opacity = '1';
+                            // Remove the lock icon overlay
+                            if (lockOverlay) {
+                                lockOverlay.remove();
+                            }
+                            // Reset the sequence index (optional)
+                            konamiIndex = 0;
+                        }
+                    } else {
+                        // Reset if a wrong key is pressed
+                        konamiIndex = 0;
+                    }
+                });
+
+                // Listen for clicks on the lock overlay to display a message if still locked
+                if (lockOverlay) {
+                    lockOverlay.addEventListener('click', (e) => {
+                        alert("code required to unlock");
+                    });
+                }
+            });
+        </script>
+
+
+
 
         <!-- New Placeholder Section A (Filling freed cell at row 5, col 3) -->
         <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
@@ -274,7 +338,7 @@
         <!-- Song Recommendations Section -->
         <section id="songs"
             class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row justify-between p-4">
-            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Recs</h2>
+            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Rec Lucky Draw</h2>
             <div class="flex flex-row mx-4">
                 <!-- Song Card Container -->
                 <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] floating">
