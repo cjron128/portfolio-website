@@ -11,8 +11,8 @@
         :root {
             --primary: #181818;
             --secondary: #8A4F7D;
-            --accent1: #B0B0B0;
-            --accent2: #B8DBD9;
+            --accent1: #f1f1f1;
+            --accent2: #aafaf5;
             --accent3: #F4F4F9;
             --accent4: #D4C5E2;
             --shadow-primary: color-mix(in srgb, var(--primary) 70%, black);
@@ -36,7 +36,7 @@
             background: var(--primary);
             outline-style: solid;
             outline-width: 2px;
-            outline-color: var(--accent1);
+            outline-color: var(--accent2);
             color: var(--accent1);
             border-radius: 10px;
         }
@@ -51,6 +51,13 @@
         }
 
         .repo-card {
+            background: var(--accent4);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .song-card {
             background: var(--accent4);
             color: var(--primary);
             border-radius: 10px;
@@ -148,30 +155,30 @@
         <div class="info-section col-start-1 row-span-4 col-span-3 px-10 py-10 flex flex-col justify-center">
             <div class="flex flex-row-reverse gap-10">
                 <div class="w-3/4 text-left">
-                    <p>Hi, I'm <span class="font-bold text-[var(--accent4)]">Christopher Ron</span>, a recent Computer
+                    <p>Hi, I'm <span class="font-bold text-[var(--accent2)]">Christopher Ron</span>, a recent Computer
                         Science
-                        graduate from <span class="font-bold text-[var(--accent4)]">Western Washington
+                        graduate from <span class="font-bold text-[var(--accent2)]">Western Washington
                             University</span>.</p>
 
-                    <p class="mt-4">I love <span class="font-bold text-[var(--accent4)]">building things</span>—whether
+                    <p class="mt-4">I love <span class="font-bold text-[var(--accent2)]">building things</span>—whether
                         it’s
-                        writing <span class="font-bold text-[var(--accent4)]">clean, efficient code</span>, optimizing a
+                        writing <span class="font-bold text-[var(--accent2)]">clean, efficient code</span>, optimizing a
                         system for
                         performance,
                         or solving a tricky problem. I find the most fulfillment in <span
-                            class="font-bold text-[var(--accent4)]">bringing
+                            class="font-bold text-[var(--accent2)]">bringing
                             ideas to life</span>
                         through thoughtful design, problem-solving, and a drive for innovation.</p>
 
                     <p class="mt-4">When I’m not at my desk, you’ll probably find me
-                        <span class="font-bold text-[var(--accent4)]">lifting at the gym</span>,
-                        <span class="font-bold text-[var(--accent4)]">experimenting in the kitchen</span>,
-                        <span class="font-bold text-[var(--accent4)]">modding old Nintendo consoles</span>, or
-                        <span class="font-bold text-[var(--accent4)]">playing guitar</span>.
-                        I love <span class="font-bold text-[var(--accent4)]">tinkering</span>—whether it’s with code,
+                        <span class="font-bold text-[var(--accent2)]">lifting at the gym</span>,
+                        <span class="font-bold text-[var(--accent2)]">experimenting in the kitchen</span>,
+                        <span class="font-bold text-[var(--accent2)]">modding old Nintendo consoles</span>, or
+                        <span class="font-bold text-[var(--accent2)]">playing guitar</span>.
+                        I love <span class="font-bold text-[var(--accent2)]">tinkering</span>—whether it’s with code,
                         hardware, or a new
                         recipe.
-                        Let’s connect and talk about <span class="font-bold text-[var(--accent4)]">what you're
+                        Let’s connect and talk about <span class="font-bold text-[var(--accent2)]">what you're
                             building</span>!
                     </p>
                 </div>
@@ -185,15 +192,15 @@
 
 
         <!-- My Toolbox -->
-        <div class="info-section col-start-4 row-span-8 col-span-1 px-10 py-10 flex flex-col">
-            <h3 class="text-2xl font-bold text-[var(--accent4)] mb-6">My Toolbox</h3>
+        <div class="info-section col-start-4 row-span-7 col-span-1 px-10 py-10 flex flex-col">
+            <h3 class="text-2xl font-bold text-[var(--accent2)] mb-6">My Toolbox</h3>
 
             <!-- Programming Languages -->
             <div class="mb-6">
-                <div class="flex items-center mb-2">
-                    <h4 class="text-xl font-semibold text-[var(--accent4)]">💻 Programming Languages</h4>
+                <div class="mb-2">
+                    <h4 class="text-lg font-semibold text-[var(--accent2)] text-nowrap">💻 Programming Languages</h4>
                 </div>
-                <ul class="list-disc list-inside text-[var(--accent3)]">
+                <ul class="list-disc list-inside">
                     <li>Java</li>
                     <li>Python</li>
                     <li>JavaScript</li>
@@ -207,9 +214,9 @@
             <!-- Tools & Technologies -->
             <div>
                 <div class="mb-6">
-                    <h4 class="text-lg font-semibold text-[var(--accent4)]">🛠 Tools &amp; Technologies</h4>
+                    <h4 class="text-lg font-semibold text-[var(--accent2)]">🛠 Tools &amp; Technologies</h4>
                 </div>
-                <ul class="list-disc list-inside text-sm text-[var(--accent3)] space-y-4">
+                <ul class="list-disc list-inside text-sm space-y-4">
                     <li><strong>Backend:</strong> Node.js, Supabase, PostgreSQL, REST APIs</li>
                     <li><strong>Frontend:</strong> React.js, Vite, Tailwind, Three.js</li>
                     <li><strong>Cloud &amp; DevOps:</strong> AWS, CI/CD, GitHub Actions</li>
@@ -220,10 +227,10 @@
 
 
         <!-- Links -->
-        <div class="info-section col-start-1 row-span-2 col-span-1 flex items-center justify-center p-4">
+        <div class="interact-section col-start-1 row-span-2 col-span-1 flex items-center justify-center p-4">
             <div class="flex items-center space-x-5">
                 <span class="text-xl font-bold">Links:</span>
-                <div class="flex space-x-5">
+                <div class="flex space-x-5 ">
                     <!-- Email Icon -->
                     <a href="mailto:christopherjron@gmail.com" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -270,15 +277,105 @@
             Placeholder A
         </div>
 
-        <!-- New Placeholder Section B (Filling freed cell at row 6, col 2) -->
-        <div class="info-section col-start-2 row-span-1 col-span-1 flex items-center justify-center">
-            Placeholder B
-        </div>
+        <!-- Song Recommendations Section (Replacing Placeholder B) -->
+        <section id="songs"
+            class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row items-center justify-center p-4">
+            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Recs</h2>
+            <div class="flex flex-row items-center w-full justify-center">
+                <!-- Left Arrow -->
+                <button id="songs-prev" class="p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
 
-        <!-- New Placeholder Section C (Filling freed cell at row 6, col 3) -->
-        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
-            Placeholder C
-        </div>
+                <!-- Songs Carousel Container -->
+                <div id="songs-container" class="overflow-hidden mx-4 max-w-[325px] floating">
+                    <div id="songs-inner" class="flex gap-4 transition-transform duration-300">
+                        <!-- Song cards will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Right Arrow -->
+                <button id="songs-next" class="p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Setup for Songs Carousel
+                const songsContainer = document.getElementById('songs-container');
+                const songsInner = document.getElementById('songs-inner');
+                let currentSongIndex = 0;
+
+                function updateSongsCarousel() {
+                    const containerWidth = songsContainer.clientWidth;
+                    // Get gap value from computed style (defaulting to 0 if not found)
+                    const gapValue = parseFloat(getComputedStyle(songsInner).gap) || 0;
+                    songsInner.style.transform = `translateX(-${currentSongIndex * (containerWidth + gapValue)}px)`;
+                }
+
+                // Fetch the song recommendations from an external text file (songs.txt)
+                fetch('./assets/data/songs.txt')
+                    .then(response => response.text())
+                    .then(data => {
+                        const lines = data.split('\n').filter(line => line.trim() !== '');
+                        lines.forEach(line => {
+                            // Expecting each line in the format "song name: song link"
+                            const parts = line.split(':');
+                            if (parts.length >= 2) {
+                                const songName = parts[0].trim();
+                                // In case the link itself contains a colon, join the remaining parts
+                                const songLink = parts.slice(1).join(':').trim();
+                                const card = document.createElement('a');
+                                card.href = songLink;
+                                card.target = '_blank';
+                                card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
+                                card.textContent = songName;
+                                songsInner.appendChild(card);
+                            }
+                        });
+                        updateSongsCarousel();
+                    })
+                    .catch(error => {
+                        console.error('Error loading song recommendations:', error);
+                        songsInner.textContent = 'Unable to load song recommendations.';
+                    });
+
+                // Arrow button functionality for the songs carousel
+                document.getElementById('songs-prev').addEventListener('click', () => {
+                    const totalCards = songsInner.children.length;
+                    if (currentSongIndex > 0) {
+                        currentSongIndex--;
+                        updateSongsCarousel();
+                    } else {
+                        currentSongIndex = totalCards - 1;
+                        updateSongsCarousel();
+                    }
+                });
+
+                document.getElementById('songs-next').addEventListener('click', () => {
+                    const totalCards = songsInner.children.length;
+                    if (currentSongIndex < totalCards - 1) {
+                        currentSongIndex++;
+                        updateSongsCarousel();
+                    } else {
+                        currentSongIndex = 0;
+                        updateSongsCarousel();
+                    }
+                });
+
+                window.addEventListener('resize', updateSongsCarousel);
+            });
+        </script>
+
+
+
 
         <!-- Projects Section -->
         <section id="projects" class="interact-section col-start-1 row-span-2 col-span-3 flex flex-row justify-center">
@@ -308,7 +405,6 @@
                 </button>
             </div>
         </section>
-
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const projectsContainer = document.getElementById('projects-container');
@@ -378,6 +474,11 @@
                 window.addEventListener('resize', updateCarousel);
             });
         </script>
+
+        <!-- New Placeholder Section B -->
+        <div class="info-section col-start-4 row-span-1 col-span-1 flex items-center justify-center">
+            Placeholder B
+        </div>
 
     </div>
 </body>
