@@ -277,8 +277,7 @@
             </a>
             <!-- Lock icon overlay (positioned absolutely over the button) -->
             <div id="lockOverlay" class="absolute inset-0 flex items-center justify-center pointer-events-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6"
-                    viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
                     <path d="M12 17a2 2 0 002-2v-2a2 2 0 10-4 0v2a2 2 0 002 2z" />
                     <path fill-rule="evenodd"
                         d="M5 9V7a7 7 0 1114 0v2h1a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10a1 1 0 011-1h1zm2-2a5 5 0 0110 0v2H7V7z"
@@ -330,10 +329,12 @@
 
 
 
-        <!-- New Placeholder Section A (Filling freed cell at row 5, col 3) -->
-        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
-            Placeholder A
-        </div>
+        <!--Hints -->
+        <button class="interact-section floating col-start-3 row-span-1 col-span-1 flex items-center justify-center"
+            onclick="alert('30 lives required ahead')">
+            Hints
+        </button>
+
 
         <!-- Song Recommendations Section -->
         <section id="songs"
