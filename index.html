@@ -271,100 +271,69 @@
             Placeholder A
         </div>
 
-        <!-- Song Recommendations Section (Replacing Placeholder B) -->
+        <!-- Song Recommendations Section -->
         <section id="songs"
-            class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row items-center justify-center p-4">
+            class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row justify-between p-4">
             <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Recs</h2>
-            <div class="flex flex-row items-center w-full justify-center">
-                <!-- Left Arrow -->
-                <button id="songs-prev" class="p-2 z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-
-                <!-- Songs Carousel Container -->
-                <div id="songs-container" class="overflow-hidden mx-4 max-w-[325px] floating">
-                    <div id="songs-inner" class="flex gap-4 transition-transform duration-300">
-                        <!-- Song cards will be dynamically inserted here -->
-                    </div>
+            <div class="flex flex-row mx-4">
+                <!-- Song Card Container -->
+                <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] floating">
+                    <!-- Random song card will be inserted here -->
                 </div>
-
-                <!-- Right Arrow -->
-                <button id="songs-next" class="p-2 z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                <!-- Reset Icon -->
+                <button id="song-reset" class=" z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-8 h-8 floating">
+                        <path d="M2.5 2v6h6M21.5 22v-6h-6" />
+                        <path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2" />
                     </svg>
                 </button>
             </div>
         </section>
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                // Setup for Songs Carousel
-                const songsContainer = document.getElementById('songs-container');
-                const songsInner = document.getElementById('songs-inner');
-                let currentSongIndex = 0;
+                let songs = [];
 
-                function updateSongsCarousel() {
-                    const containerWidth = songsContainer.clientWidth;
-                    // Get gap value from computed style (defaulting to 0 if not found)
-                    const gapValue = parseFloat(getComputedStyle(songsInner).gap) || 0;
-                    songsInner.style.transform = `translateX(-${currentSongIndex * (containerWidth + gapValue)}px)`;
+                function displayRandomSong() {
+                    if (songs.length === 0) return;
+                    const randomIndex = Math.floor(Math.random() * songs.length);
+                    const selectedLine = songs[randomIndex];
+                    const parts = selectedLine.split(':');
+                    if (parts.length >= 2) {
+                        const songName = parts[0].trim();
+                        const songLink = parts.slice(1).join(':').trim();
+                        const card = document.createElement('a');
+                        card.href = songLink;
+                        card.target = '_blank';
+                        card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
+                        card.textContent = songName;
+                        const container = document.getElementById('song-card-container');
+                        container.innerHTML = ''; // Clear previous song card
+                        container.appendChild(card);
+                    } else {
+                        console.error("Song line format invalid:", selectedLine);
+                    }
                 }
 
-                // Fetch the song recommendations from an external text file (songs.txt)
+                // Fetch the songs from the text file and display a random song
                 fetch('./assets/data/songs.txt')
                     .then(response => response.text())
                     .then(data => {
-                        const lines = data.split('\n').filter(line => line.trim() !== '');
-                        lines.forEach(line => {
-                            // Expecting each line in the format "song name: song link"
-                            const parts = line.split(':');
-                            if (parts.length >= 2) {
-                                const songName = parts[0].trim();
-                                // In case the link itself contains a colon, join the remaining parts
-                                const songLink = parts.slice(1).join(':').trim();
-                                const card = document.createElement('a');
-                                card.href = songLink;
-                                card.target = '_blank';
-                                card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
-                                card.textContent = songName;
-                                songsInner.appendChild(card);
-                            }
-                        });
-                        updateSongsCarousel();
+                        songs = data.split('\n').filter(line => line.trim() !== '');
+                        displayRandomSong();
                     })
                     .catch(error => {
                         console.error('Error loading song recommendations:', error);
-                        songsInner.textContent = 'Unable to load song recommendations.';
+                        const container = document.getElementById('song-card-container');
+                        container.textContent = 'Unable to load song recommendations.';
                     });
 
-                // Arrow button functionality for the songs carousel
-                document.getElementById('songs-prev').addEventListener('click', () => {
-                    const totalCards = songsInner.children.length;
-                    if (currentSongIndex > 0) {
-                        currentSongIndex--;
-                        updateSongsCarousel();
-                    } else {
-                        currentSongIndex = totalCards - 1;
-                        updateSongsCarousel();
-                    }
+                // When the reset icon is clicked, display a new random song
+                document.getElementById('song-reset').addEventListener('click', () => {
+                    displayRandomSong();
                 });
-
-                document.getElementById('songs-next').addEventListener('click', () => {
-                    const totalCards = songsInner.children.length;
-                    if (currentSongIndex < totalCards - 1) {
-                        currentSongIndex++;
-                        updateSongsCarousel();
-                    } else {
-                        currentSongIndex = 0;
-                        updateSongsCarousel();
-                    }
-                });
-
-                window.addEventListener('resize', updateSongsCarousel);
             });
         </script>
 
