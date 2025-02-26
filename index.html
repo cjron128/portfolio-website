@@ -23,7 +23,7 @@
         body {
             background: var(--shadow-primary);
             color: var(--primary);
-            height: 100vh;
+            height: auto;
             margin: 0;
             display: flex;
             align-items: center;
@@ -161,17 +161,17 @@
     </script>
 </head>
 
-<body class="lg:overflow-hidden">
+<body >
     <div class="w-full h-full grid-overlay z-2"></div>
     <div class="w-full h-full color-overlay z-1"></div>
     <!-- Outer Grid Container -->
     <div
-        class="z-0 w-full grid gap-5 px-8 mx-auto md:max-w-[1600px] lg:max-w-[1900px] grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 lg:grid-rows-8">
+        class="z-0 w-full grid gap-5 px-8 mx-auto pt-8 md:max-w-[1600px] lg:max-w-[1900px] grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 lg:grid-rows-8">
         <!-- About Section -->
         <div
             class="info-section col-span-full lg:col-start-1 lg:row-span-4 lg:col-span-3 px-10 py-10 flex flex-col justify-center">
             <div class="flex flex-col-reverse lg:flex-row-reverse gap-10">
-                <div class="w-full lg:w-3/4 text-left">
+                <div class="w-full lg:w-3/4 text-left lg:text-lg">
                     <p>Hello, I'm <span class="font-bold text-[var(--accent2)]">Christopher Ron</span>, a recent <span
                             class="font-bold text-[var(--accent2)]">Computer Science graduate</span> from <span
                             class="font-bold text-[var(--accent2)]">Western Washington University</span>. I am actively
@@ -208,7 +208,7 @@
 
         <!-- My Toolbox -->
         <div
-            class="info-section col-span-full lg:col-start-4 lg:row-span-7 lg:col-span-1 px-10 py-10 flex flex-col space-y-12">
+            class="info-section col-span-full lg:col-start-4 lg:row-span-7 lg:col-span-1 px-10 py-10 flex flex-col space-y-12 lg:text-lg">
             <h3 class="text-2xl font-bold text-[var(--accent2)]">My Toolbox</h3>
 
             <!-- Programming Languages -->
@@ -233,7 +233,7 @@
                 <div class="mb-2">
                     <h4 class="text-lg font-semibold text-[var(--accent2)]">🛠 Tools &amp; Technologies</h4>
                 </div>
-                <ul class="list-disc list-inside text-sm space-y-4">
+                <ul class="list-disc list-inside text-md space-y-2">
                     <li><strong>Backend:</strong> Node.js, Supabase, PostgreSQL, REST APIs</li>
                     <li><strong>Frontend:</strong> React.js, Vite, Tailwind, Three.js</li>
                     <li><strong>Cloud &amp; DevOps:</strong> AWS, CI/CD, GitHub Actions</li>
