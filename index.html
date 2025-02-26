@@ -327,11 +327,28 @@
 
 
 
-        <!--Hints -->
-        <button class="interact-section floating col-start-3 row-span-1 col-span-1 flex items-center justify-center"
-            onclick="alert('30 lives required ahead')">
-            Hint
-        </button>
+        <!-- Display Time (PST) Section -->
+        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
+            <time id="pstTime" datetime=""></time>
+        </div>
+        <script>
+            function updatePSTTime() {
+                const now = new Date();
+                const options = {
+                    timeZone: 'America/Los_Angeles',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                };
+                const pstTimeStr = now.toLocaleTimeString('en-US', options);
+                const timeElem = document.getElementById('pstTime');
+                timeElem.textContent = pstTimeStr + " PST";
+                timeElem.setAttribute('datetime', now.toISOString());
+            }
+            updatePSTTime();
+            setInterval(updatePSTTime, 1000);
+        </script>
 
 
         <!-- Song Recommendations Section -->
