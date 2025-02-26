@@ -354,14 +354,14 @@
         <!-- Song Recommendations Section -->
         <section id="songs"
             class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row justify-between p-4">
-            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Rec Lucky Draw</h2>
+            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Roulette Wheel</h2>
             <div class="flex flex-row mx-4">
                 <!-- Song Card Container -->
                 <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] floating">
                     <!-- Random song card will be inserted here -->
                 </div>
                 <!-- Reset Icon -->
-                <button id="song-reset" class=" z-10">
+                <button id="song-reset" class="z-10" aria-label="Spin for a new song">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="w-6 h-6 floating">
@@ -376,7 +376,18 @@
             document.addEventListener('DOMContentLoaded', () => {
                 let songs = [];
 
-                function displayRandomSong() {
+                // Helper to create a song card element
+                function createSongCard(songName, songLink) {
+                    const card = document.createElement('a');
+                    card.href = songLink;
+                    card.target = '_blank';
+                    card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
+                    card.textContent = songName;
+                    return card;
+                }
+
+                // Display a final random song after the spin animation completes
+                function displayFinalSong() {
                     if (songs.length === 0) return;
                     const randomIndex = Math.floor(Math.random() * songs.length);
                     const selectedLine = songs[randomIndex];
@@ -384,25 +395,48 @@
                     if (parts.length >= 2) {
                         const songName = parts[0].trim();
                         const songLink = parts.slice(1).join(':').trim();
-                        const card = document.createElement('a');
-                        card.href = songLink;
-                        card.target = '_blank';
-                        card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
-                        card.textContent = songName;
                         const container = document.getElementById('song-card-container');
-                        container.innerHTML = ''; // Clear previous song card
-                        container.appendChild(card);
-                    } else {
-                        console.error("Song line format invalid:", selectedLine);
+                        container.innerHTML = '';
+                        container.appendChild(createSongCard(songName, songLink));
                     }
                 }
 
-                // Fetch the songs from the text file and display a random song
+                // Spin animation simulating a slot machine before stopping on a random song
+                function spinAnimation() {
+                    if (songs.length === 0) return;
+                    const container = document.getElementById('song-card-container');
+                    const resetBtn = document.getElementById('song-reset');
+                    resetBtn.disabled = true; // Prevent further clicks during spin
+
+                    let spinDuration = 3000; // Total spin duration in milliseconds
+                    let spinInterval = 100;  // Update song every 100ms
+                    let elapsed = 0;
+                    const spin = setInterval(() => {
+                        const randomIndex = Math.floor(Math.random() * songs.length);
+                        const selectedLine = songs[randomIndex];
+                        const parts = selectedLine.split(':');
+                        if (parts.length >= 2) {
+                            const songName = parts[0].trim();
+                            const songLink = parts.slice(1).join(':').trim();
+                            container.innerHTML = '';
+                            container.appendChild(createSongCard(songName, songLink));
+                        }
+                        elapsed += spinInterval;
+                        if (elapsed >= spinDuration) {
+                            clearInterval(spin);
+                            displayFinalSong();
+                            resetBtn.disabled = false; // Re-enable the button after spin
+                        }
+                    }, spinInterval);
+                }
+
+                // Fetch songs from text file and start the spin animation on page load
                 fetch('./assets/data/songs.txt')
                     .then(response => response.text())
                     .then(data => {
                         songs = data.split('\n').filter(line => line.trim() !== '');
-                        displayRandomSong();
+                        // Start the spin animation automatically on page refresh
+                        spinAnimation();
                     })
                     .catch(error => {
                         console.error('Error loading song recommendations:', error);
@@ -410,10 +444,8 @@
                         container.textContent = 'Unable to load song recommendations.';
                     });
 
-                // When the reset icon is clicked, display a new random song
-                document.getElementById('song-reset').addEventListener('click', () => {
-                    displayRandomSong();
-                });
+                // When the reset icon is clicked, start the spin animation
+                document.getElementById('song-reset').addEventListener('click', spinAnimation);
             });
         </script>
 
