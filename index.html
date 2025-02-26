@@ -32,6 +32,16 @@
             overflow: hidden;
         }
 
+        /* Allow scrolling on mobile */
+        @media (max-width: 640px) {
+            body {
+                height: auto;
+                overflow-y: auto;
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+        }
+
         .gauntlet-button {
             border-radius: 10px;
             padding: 12px;
@@ -121,9 +131,7 @@
         /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar {
             -ms-overflow-style: none;
-            /* IE and Edge */
             scrollbar-width: none;
-            /* Firefox */
         }
     </style>
     <script>
@@ -156,11 +164,14 @@
 <body>
     <div class="w-full h-full grid-overlay z-2"></div>
     <div class="w-full h-full color-overlay z-1"></div>
-    <div class="z-0 w-full grid grid-cols-4 grid-rows-8 gap-5 px-72 max-w-[2000px]">
+    <!-- Outer Grid Container -->
+    <div
+        class="z-0 w-full grid gap-5 px-4 sm:px-8 lg:px-72 max-w-[2000px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-8">
         <!-- About Section -->
-        <div class="info-section col-start-1 row-span-4 col-span-3 px-10 py-10 flex flex-col justify-center">
-            <div class="flex flex-row-reverse gap-10">
-                <div class="w-3/4 text-left">
+        <div
+            class="info-section col-span-full lg:col-start-1 lg:row-span-4 lg:col-span-3 px-10 py-10 flex flex-col justify-center">
+            <div class="flex flex-col-reverse lg:flex-row-reverse gap-10">
+                <div class="w-full lg:w-3/4 text-left">
                     <p>Hello, I'm <span class="font-bold text-[var(--accent2)]">Christopher Ron</span>, a recent <span
                             class="font-bold text-[var(--accent2)]">Computer Science graduate</span> from <span
                             class="font-bold text-[var(--accent2)]">Western Washington University</span>. I am actively
@@ -170,12 +181,13 @@
 
                     <p class="mt-4">I am passionate about designing and building <span
                             class="font-bold text-[var(--accent2)]">robust, scalable applications</span>—whether that
-                        involves writing <span class="font-bold text-[var(--accent2)]">clean and maintainable code</span>,
-                        <span class="font-bold text-[var(--accent2)]">optimizing performance</span>, or solving <span
-                            class="font-bold text-[var(--accent2)]">complex technical challenges</span>. I strive to
-                        turn <span class="font-bold text-[var(--accent2)]">innovative ideas</span> into practical
-                        solutions through <span class="font-bold text-[var(--accent2)]">meticulous design</span> and
-                        <span class="font-bold text-[var(--accent2)]">proactive problem-solving</span>.</p>
+                        involves writing <span class="font-bold text-[var(--accent2)]">clean and maintainable
+                            code</span>, <span class="font-bold text-[var(--accent2)]">optimizing performance</span>, or
+                        solving <span class="font-bold text-[var(--accent2)]">complex technical challenges</span>. I
+                        strive to turn <span class="font-bold text-[var(--accent2)]">innovative ideas</span> into
+                        practical solutions through <span class="font-bold text-[var(--accent2)]">meticulous
+                            design</span> and <span class="font-bold text-[var(--accent2)]">proactive
+                            problem-solving</span>.</p>
 
                     <p class="mt-4">Outside of work, I pursue interests such as <span
                             class="font-bold text-[var(--accent2)]">weightlifting</span>, <span
@@ -188,23 +200,22 @@
                         explore how my <span class="font-bold text-[var(--accent2)]">skills</span> can contribute to
                         your <span class="font-bold text-[var(--accent2)]">team</span>.</p>
                 </div>
-                <div class="w-1/4 my-auto">
+                <div class="w-full lg:w-1/4 my-auto">
                     <img src="./assets/images/headshot.jpeg" alt="Profile" class="object-cover rounded-lg shadow-lg">
                 </div>
             </div>
         </div>
 
-
-
-
         <!-- My Toolbox -->
-        <div class="info-section col-start-4 row-span-7 col-span-1 px-10 py-10 flex flex-col space-y-12">
+        <div
+            class="info-section col-span-full lg:col-start-4 lg:row-span-7 lg:col-span-1 px-10 py-10 flex flex-col space-y-12">
             <h3 class="text-2xl font-bold text-[var(--accent2)]">My Toolbox</h3>
 
             <!-- Programming Languages -->
             <div>
                 <div class="mb-2">
-                    <h4 class="text-lg font-semibold text-[var(--accent2)] text-nowrap">💻 Programming Languages</h4>
+                    <h4 class="text-lg font-semibold text-[var(--accent2)] whitespace-nowrap">💻 Programming Languages
+                    </h4>
                 </div>
                 <ul class="list-disc list-inside">
                     <li>Java</li>
@@ -217,7 +228,7 @@
                 </ul>
             </div>
 
-            <!-- Tools & Technologies -->
+            <!-- Tools &amp; Technologies -->
             <div>
                 <div class="mb-2">
                     <h4 class="text-lg font-semibold text-[var(--accent2)]">🛠 Tools &amp; Technologies</h4>
@@ -231,16 +242,16 @@
             </div>
         </div>
 
-
         <!-- Links -->
-        <div class="interact-section col-start-1 row-span-2 col-span-1 flex items-center justify-center p-4">
+        <div
+            class="interact-section col-span-full lg:col-start-1 lg:row-span-2 lg:col-span-1 flex items-center justify-center p-4">
             <div class="flex items-center space-x-5">
                 <span class="text-xl font-bold">Links:</span>
-                <div class="flex space-x-5 ">
+                <div class="flex space-x-5">
                     <!-- Email Icon -->
                     <a href="mailto:christopherjron@gmail.com" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            class="w-8 h-8 floating">
+                            class="w-8 h-8 lg:floating">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 0a2 2 0 00-2-2H5a2 2 0 00-2 2m18 0v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8" />
                         </svg>
@@ -248,7 +259,7 @@
                     <!-- LinkedIn Icon -->
                     <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:text-accent2"
                         aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 lg:floating"
                             viewBox="0 0 24 24">
                             <path
                                 d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.2c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.2h-3v-4.5c0-1.07-.43-1.5-1.25-1.5-.68 0-1.09.45-1.25.88-.065.155-.08.37-.08.59v4.53h-3v-9h3v1.24c.4-.62 1.11-1.51 2.7-1.51 1.97 0 3.45 1.28 3.45 4.03v4.24z" />
@@ -257,7 +268,7 @@
                     <!-- GitHub Icon -->
                     <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:text-accent2"
                         aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 lg:floating"
                             viewBox="0 0 24 24">
                             <path
                                 d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.388-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.874.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.21v3.293c0 .322.21.696.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
@@ -267,15 +278,16 @@
             </div>
         </div>
 
-
         <!-- Run The Gauntlet -->
-        <div class="interact-section col-start-2 row-span-1 col-span-1 flex items-center justify-center relative">
+        <div
+            class="hidden interact-section col-span-full lg:col-start-2 lg:row-span-1 lg:col-span-1 lg:flex items-center justify-center relative">
             <a href="./misc/gauntlet-start.html" id="gauntletButton"
-                class="px-4 py-2 gauntlet-button floating font-bold transition opacity-50 pointer-events-none">
+                class="hidden lg:inline-block px-4 py-2 gauntlet-button lg:floating font-bold transition opacity-50 pointer-events-none">
                 👾
             </a>
-            <!-- Lock icon overlay (positioned absolutely over the button) -->
-            <div id="lockOverlay" class="absolute inset-0 flex items-center justify-center pointer-events-auto">
+            <!-- Lock icon overlay (hidden on mobile) -->
+            <div id="lockOverlay"
+                class="hidden lg:flex absolute inset-0 items-center justify-center pointer-events-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
                     <path d="M12 17a2 2 0 002-2v-2a2 2 0 10-4 0v2a2 2 0 002 2z" />
                     <path fill-rule="evenodd"
@@ -284,55 +296,108 @@
                 </svg>
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // Define the Konami sequence
-                const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-                let konamiIndex = 0;
-
-                // Get references to the button and lock overlay
-                const button = document.getElementById('gauntletButton');
-                const lockOverlay = document.getElementById('lockOverlay');
-
-                // Listen for keydown events for the Konami code
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === konamiCode[konamiIndex]) {
-                        konamiIndex++;
-                        // If the entire sequence has been entered
-                        if (konamiIndex === konamiCode.length) {
-                            // Enable the button by restoring full opacity and pointer events
-                            button.classList.remove('opacity-50', 'pointer-events-none');
-                            button.style.opacity = '1';
-                            // Remove the lock icon overlay
-                            if (lockOverlay) {
-                                lockOverlay.remove();
-                            }
-                            // Reset the sequence index (optional)
-                            konamiIndex = 0;
-                        }
-                    } else {
-                        // Reset if a wrong key is pressed
-                        konamiIndex = 0;
-                    }
-                });
-
-                // Listen for clicks on the lock overlay to display a message if still locked
-                if (lockOverlay) {
-                    lockOverlay.addEventListener('click', (e) => {
-                        alert("code required");
-                    });
-                }
-            });
-        </script>
-
-
-
 
         <!-- Display Time (PST) Section -->
-        <div class="info-section col-start-3 row-span-1 col-span-1 flex items-center justify-center">
+        <div
+            class="hidden info-section col-span-full lg:col-start-3 lg:row-span-1 lg:col-span-1 lg:flex items-center justify-center">
             <time id="pstTime" datetime=""></time>
         </div>
-        <script>
+
+        <!-- Song Recommendations Section -->
+        <section id="songs"
+            class="interact-section col-span-full lg:col-start-2 lg:row-span-1 lg:col-span-2 flex flex-col lg:flex-row justify-between p-4">
+            <h2 class="text-lg font-bold mx-auto mb-4 lg:my-auto lg:mx-4 whitespace-nowrap">Song Roulette Wheel</h2>
+            <div class="flex flex-row lg:mx-4">
+                <!-- Song Card Container -->
+                <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] lg:floating">
+                    <!-- Random song card will be inserted here -->
+                </div>
+                <!-- Reset Icon -->
+                <button id="song-reset" class="z-10" aria-label="Spin for a new song">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6 lg:floating">
+                        <path d="M2.5 2v6h6M21.5 22v-6h-6" />
+                        <path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects"
+            class="interact-section col-span-full lg:col-start-1 lg:row-span-2 lg:col-span-3 flex flex-col lg:flex-row justify-center">
+            <h2 class="text-xl font-bold mx-auto my-4 lg:mx-20 lg:my-auto">Projects</h2>
+            <div class="flex flex-row items-center w-full justify-end mb-4 lg:my-auto lg:px-6">
+                <!-- Left Arrow -->
+                <button id="prev" class="hidden lg:flex lg:p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <!-- Repo Cards Container -->
+                <div id="projects-container"
+                    class="overflow-hidden px-4 mx-auto lg:mx-4 min-w-[250px] max-w-[500px] lg:floating">
+                    <div id="projects-inner" class="flex gap-4 transition-transform duration-300 ">
+                        <!-- Repo cards will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Right Arrow -->
+                <button id="next" class="hidden lg:flex lg:p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Resume Download -->
+        <a href="./assets/resume/resume.pdf" download
+            class="col-span-full lg:col-start-4 lg:row-span-1 lg:col-span-1 flex items-center justify-center interact-section font-bold text-xl lg:floating mb-4">
+            <span class="py-4">Resume</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                class="w-6 h-6 ml-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Konami code logic for the gauntlet button
+            const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let konamiIndex = 0;
+            const button = document.getElementById('gauntletButton');
+            const lockOverlay = document.getElementById('lockOverlay');
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === konamiCode[konamiIndex]) {
+                    konamiIndex++;
+                    if (konamiIndex === konamiCode.length) {
+                        button.classList.remove('opacity-50', 'pointer-events-none');
+                        button.style.opacity = '1';
+                        if (lockOverlay) {
+                            lockOverlay.remove();
+                        }
+                        konamiIndex = 0;
+                    }
+                } else {
+                    konamiIndex = 0;
+                }
+            });
+
+            if (lockOverlay) {
+                lockOverlay.addEventListener('click', () => {
+                    alert("code required");
+                });
+            }
+
+            // PST Time Update
             function updatePSTTime() {
                 const now = new Date();
                 const options = {
@@ -349,222 +414,197 @@
             }
             updatePSTTime();
             setInterval(updatePSTTime, 1000);
-        </script>
 
-
-        <!-- Song Recommendations Section -->
-        <section id="songs"
-            class="interact-section col-start-2 row-span-1 col-span-2 flex flex-row justify-between p-4">
-            <h2 class="text-lg font-bold my-auto mx-4 text-nowrap">Song Roulette Wheel</h2>
-            <div class="flex flex-row mx-4">
-                <!-- Song Card Container -->
-                <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] floating">
-                    <!-- Random song card will be inserted here -->
-                </div>
-                <!-- Reset Icon -->
-                <button id="song-reset" class="z-10" aria-label="Spin for a new song">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-6 h-6 floating">
-                        <path d="M2.5 2v6h6M21.5 22v-6h-6" />
-                        <path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2" />
-                    </svg>
-                </button>
-            </div>
-        </section>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                let songs = [];
-
-                // Helper to create a song card element
-                function createSongCard(songName, songLink) {
-                    const card = document.createElement('a');
-                    card.href = songLink;
-                    card.target = '_blank';
-                    card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
-                    card.textContent = songName;
-                    return card;
+            // Song Recommendations
+            let songs = [];
+            function createSongCard(songName, songLink) {
+                const card = document.createElement('a');
+                card.href = songLink;
+                card.target = '_blank';
+                card.className = 'song-card w-full h-[50px] flex-shrink-0 flex items-center justify-center';
+                card.textContent = songName;
+                return card;
+            }
+            function displayFinalSong() {
+                if (songs.length === 0) return;
+                const randomIndex = Math.floor(Math.random() * songs.length);
+                const selectedLine = songs[randomIndex];
+                const parts = selectedLine.split(':');
+                if (parts.length >= 2) {
+                    const songName = parts[0].trim();
+                    const songLink = parts.slice(1).join(':').trim();
+                    const container = document.getElementById('song-card-container');
+                    container.innerHTML = '';
+                    container.appendChild(createSongCard(songName, songLink));
                 }
-
-                // Display a final random song after the spin animation completes
-                function displayFinalSong() {
-                    if (songs.length === 0) return;
+            }
+            function spinAnimation() {
+                if (songs.length === 0) return;
+                const container = document.getElementById('song-card-container');
+                const resetBtn = document.getElementById('song-reset');
+                resetBtn.disabled = true;
+                let spinDuration = 3000;
+                let spinInterval = 100;
+                let elapsed = 0;
+                const spin = setInterval(() => {
                     const randomIndex = Math.floor(Math.random() * songs.length);
                     const selectedLine = songs[randomIndex];
                     const parts = selectedLine.split(':');
                     if (parts.length >= 2) {
                         const songName = parts[0].trim();
                         const songLink = parts.slice(1).join(':').trim();
-                        const container = document.getElementById('song-card-container');
                         container.innerHTML = '';
                         container.appendChild(createSongCard(songName, songLink));
                     }
-                }
-
-                // Spin animation simulating a slot machine before stopping on a random song
-                function spinAnimation() {
-                    if (songs.length === 0) return;
+                    elapsed += spinInterval;
+                    if (elapsed >= spinDuration) {
+                        clearInterval(spin);
+                        displayFinalSong();
+                        resetBtn.disabled = false;
+                    }
+                }, spinInterval);
+            }
+            fetch('./assets/data/songs.txt')
+                .then(response => response.text())
+                .then(data => {
+                    songs = data.split('\n').filter(line => line.trim() !== '');
+                    spinAnimation();
+                })
+                .catch(error => {
+                    console.error('Error loading song recommendations:', error);
                     const container = document.getElementById('song-card-container');
-                    const resetBtn = document.getElementById('song-reset');
-                    resetBtn.disabled = true; // Prevent further clicks during spin
+                    container.textContent = 'Unable to load song recommendations.';
+                });
+            document.getElementById('song-reset').addEventListener('click', spinAnimation);
 
-                    let spinDuration = 3000; // Total spin duration in milliseconds
-                    let spinInterval = 100;  // Update song every 100ms
-                    let elapsed = 0;
-                    const spin = setInterval(() => {
-                        const randomIndex = Math.floor(Math.random() * songs.length);
-                        const selectedLine = songs[randomIndex];
-                        const parts = selectedLine.split(':');
-                        if (parts.length >= 2) {
-                            const songName = parts[0].trim();
-                            const songLink = parts.slice(1).join(':').trim();
-                            container.innerHTML = '';
-                            container.appendChild(createSongCard(songName, songLink));
-                        }
-                        elapsed += spinInterval;
-                        if (elapsed >= spinDuration) {
-                            clearInterval(spin);
-                            displayFinalSong();
-                            resetBtn.disabled = false; // Re-enable the button after spin
-                        }
-                    }, spinInterval);
+            // Projects Carousel with Free Swipe on Mobile (Clamped Boundaries)
+
+            const projectsContainer = document.getElementById('projects-container');
+            const projectsInner = document.getElementById('projects-inner');
+
+            let currentIndex = 0; // used for snapping on non-mobile devices
+            let currentTranslate = 0; // current translation offset (in pixels)
+            let startX = 0;
+            let startTranslate = 0;
+            let isDragging = false;
+
+            const updateCarousel = () => {
+                projectsInner.style.transition = "transform 0.3s ease-out";
+                projectsInner.style.transform = `translateX(${currentTranslate}px)`;
+            };
+
+            const clampTranslate = () => {
+                const containerWidth = projectsContainer.clientWidth;
+                const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
+                const totalCards = projectsInner.children.length;
+                const minTranslate = -((totalCards - 1) * (containerWidth-gapValue));
+                if (currentTranslate > 0) currentTranslate = 0;
+                if (currentTranslate < minTranslate) currentTranslate = minTranslate;
+            };
+
+            // Arrow navigation (only active on larger screens)
+            document.getElementById('prev').addEventListener('click', () => {
+                const containerWidth = projectsContainer.clientWidth;
+                const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
+                    updateCarousel();
                 }
-
-                // Fetch songs from text file and start the spin animation on page load
-                fetch('./assets/data/songs.txt')
-                    .then(response => response.text())
-                    .then(data => {
-                        songs = data.split('\n').filter(line => line.trim() !== '');
-                        // Start the spin animation automatically on page refresh
-                        spinAnimation();
-                    })
-                    .catch(error => {
-                        console.error('Error loading song recommendations:', error);
-                        const container = document.getElementById('song-card-container');
-                        container.textContent = 'Unable to load song recommendations.';
-                    });
-
-                // When the reset icon is clicked, start the spin animation
-                document.getElementById('song-reset').addEventListener('click', spinAnimation);
             });
-        </script>
 
+            document.getElementById('next').addEventListener('click', () => {
+                const containerWidth = projectsContainer.clientWidth;
+                const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
+                const totalCards = projectsInner.children.length;
+                if (currentIndex < totalCards - 1) {
+                    currentIndex++;
+                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
+                    updateCarousel();
+                }
+            });
 
+            // Touch events for dragging/swiping
+            projectsContainer.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                startTranslate = currentTranslate;
+                projectsInner.style.transition = "none"; // disable transition during drag
+            });
 
+            projectsContainer.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentX = e.touches[0].clientX;
+                const deltaX = currentX - startX;
+                const newTranslate = startTranslate + deltaX;
+                projectsInner.style.transform = `translateX(${newTranslate}px)`;
+            });
 
-        <!-- Projects Section -->
-        <section id="projects" class="interact-section col-start-1 row-span-2 col-span-3 flex flex-row justify-center">
-            <h2 class="text-xl font-bold mx-20 my-auto">Projects</h2>
-            <div class="flex flex-row items-center w-full justify-end my-auto px-6">
-                <!-- Left Arrow -->
-                <button id="prev" class="p-2 z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
+            projectsContainer.addEventListener('touchend', (e) => {
+                isDragging = false;
+                const currentX = e.changedTouches[0].clientX;
+                const deltaX = currentX - startX;
+                const containerWidth = projectsContainer.clientWidth;
+                const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
+                const totalCards = projectsInner.children.length;
+                const isMobile = window.innerWidth < 640;
 
-                <!-- Repo Cards Container -->
-                <div id="projects-container" class="overflow-hidden mx-4 max-w-[500px] floating">
-                    <div id="projects-inner" class="flex gap-4 transition-transform duration-300 ">
-                        <!-- Repo cards will be dynamically inserted here -->
-                    </div>
-                </div>
+                if (!isMobile) {
+                    // On larger screens, snap to nearest card.
+                    const approximateIndex = - (startTranslate + deltaX) / (containerWidth + gapValue);
+                    currentIndex = Math.round(approximateIndex);
+                    if (currentIndex < 0) currentIndex = 0;
+                    if (currentIndex > totalCards - 1) currentIndex = totalCards - 1;
+                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
+                } else {
+                    // On mobile, update translation smoothly without snapping, but clamp the value.
+                    currentTranslate = startTranslate + deltaX;
+                    clampTranslate();
+                }
+                updateCarousel();
+            });
 
-                <!-- Right Arrow -->
-                <button id="next" class="p-2 z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-            </div>
-        </section>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const projectsContainer = document.getElementById('projects-container');
-                const projectsInner = document.getElementById('projects-inner');
-                let currentIndex = 0;
-
-                // Function to update the carousel transform based on the container width and gap.
-                const updateCarousel = () => {
-                    const containerWidth = projectsContainer.clientWidth;
-                    const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
-                    projectsInner.style.transform = `translateX(-${currentIndex * (containerWidth + gapValue)}px)`;
-                };
-
-                // Fetch GitHub repos and insert cards
-                fetch('https://api.github.com/users/cjron128/repos')
-                    .then(response => response.json())
-                    .then(repos => {
-                        repos.sort((a, b) => {
-                            if (a.name.toLowerCase() === 'java-chatbot') return -1;
-                            if (b.name.toLowerCase() === 'java-chatbot') return 1;
-                            if (a.name.toLowerCase() === 'portfolio-website') return -1;
-                            if (b.name.toLowerCase() === 'portfolio-website') return 1;
-                            return 0;
-                        });
-                        repos.forEach(repo => {
-                            const card = document.createElement('a');
-                            card.href = repo.html_url;
-                            card.target = '_blank';
-                            card.className = 'repo-card w-full h-[100px] transition transform flex-shrink-0';
-
-                            const title = document.createElement('h3');
-                            title.className = 'font-bold text-lg mb-2';
-                            title.textContent = repo.name;
-
-                            const description = document.createElement('p');
-                            description.className = 'text-sm';
-                            if (repo.name == "portfolio-website") {
-                                description.textContent = "The code that makes this website work."
-                            } else {
-                                description.textContent = repo.description || 'No description';
-                            }
-
-                            card.appendChild(title);
-                            card.appendChild(description);
-                            console.log(repo.name);
-                            projectsInner.appendChild(card);
-                        });
-                        updateCarousel();
+            // Fetch repos and populate carousel (required snippet)
+            fetch('https://api.github.com/users/cjron128/repos')
+                .then(response => response.json())
+                .then(repos => {
+                    repos.sort((a, b) => {
+                        if (a.name.toLowerCase() === 'java-chatbot') return -1;
+                        if (b.name.toLowerCase() === 'java-chatbot') return 1;
+                        if (a.name.toLowerCase() === 'portfolio-website') return -1;
+                        if (b.name.toLowerCase() === 'portfolio-website') return 1;
+                        return 0;
                     });
-
-                // Arrow button scroll functionality
-                document.getElementById('prev').addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        updateCarousel();
-                    }
+                    repos.forEach(repo => {
+                        const card = document.createElement('a');
+                        card.href = repo.html_url;
+                        card.target = '_blank';
+                        card.className = 'repo-card w-full h-[100px] transition transform flex-shrink-0';
+                        const title = document.createElement('h3');
+                        title.className = 'font-bold text-lg mb-2';
+                        title.textContent = repo.name;
+                        const description = document.createElement('p');
+                        description.className = 'text-sm';
+                        if (repo.name.toLowerCase() === "portfolio-website") {
+                            description.textContent = "The code that makes this website work.";
+                        } else {
+                            description.textContent = repo.description || 'No description';
+                        }
+                        card.appendChild(title);
+                        card.appendChild(description);
+                        projectsInner.appendChild(card);
+                    });
+                    // Ensure we don't start beyond boundaries once cards are loaded
+                    clampTranslate();
+                    updateCarousel();
                 });
 
-                document.getElementById('next').addEventListener('click', () => {
-                    const totalCards = projectsInner.children.length;
-                    if (currentIndex < totalCards - 1) {
-                        currentIndex++;
-                        updateCarousel();
-                    }
-                });
-
-                window.addEventListener('resize', updateCarousel);
-            });
-        </script>
+            window.addEventListener('resize', updateCarousel);
 
 
 
-        <!-- Resume Download -->
-        <a href="./assets/resume/resume.pdf" download
-            class="col-start-4 row-span-1 col-span-1 flex items-center justify-center interact-section font-bold text-xl floating">
-            <span>Resume</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                class="w-6 h-6 ml-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-            </svg>
-        </a>
-
-    </div>
+        });
+    </script>
 </body>
 
 </html>
