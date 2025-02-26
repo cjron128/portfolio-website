@@ -29,7 +29,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         /* Allow scrolling on mobile */
@@ -161,12 +161,12 @@
     </script>
 </head>
 
-<body>
+<body class="lg:overflow-hidden">
     <div class="w-full h-full grid-overlay z-2"></div>
     <div class="w-full h-full color-overlay z-1"></div>
     <!-- Outer Grid Container -->
     <div
-        class="z-0 w-full grid gap-5 px-4 sm:px-8 lg:px-72 max-w-[2000px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-8">
+        class="z-0 w-full grid gap-5 px-8 mx-auto md:max-w-[1600px] lg:max-w-[1900px] grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 lg:grid-rows-8">
         <!-- About Section -->
         <div
             class="info-section col-span-full lg:col-start-1 lg:row-span-4 lg:col-span-3 px-10 py-10 flex flex-col justify-center">
@@ -214,7 +214,7 @@
             <!-- Programming Languages -->
             <div>
                 <div class="mb-2">
-                    <h4 class="text-lg font-semibold text-[var(--accent2)] whitespace-nowrap">💻 Programming Languages
+                    <h4 class="text-lg font-semibold text-[var(--accent2)] ">💻 Programming Languages
                     </h4>
                 </div>
                 <ul class="list-disc list-inside">
@@ -251,7 +251,7 @@
                     <!-- Email Icon -->
                     <a href="mailto:christopherjron@gmail.com" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            class="w-8 h-8 lg:floating">
+                            class="w-8 h-8 floating">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 0a2 2 0 00-2-2H5a2 2 0 00-2 2m18 0v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8" />
                         </svg>
@@ -259,7 +259,7 @@
                     <!-- LinkedIn Icon -->
                     <a href="https://linkedin.com/in/chrisron" target="_blank" class="text-accent hover:text-accent2"
                         aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 lg:floating"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
                             viewBox="0 0 24 24">
                             <path
                                 d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.2c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 10.2h-3v-4.5c0-1.07-.43-1.5-1.25-1.5-.68 0-1.09.45-1.25.88-.065.155-.08.37-.08.59v4.53h-3v-9h3v1.24c.4-.62 1.11-1.51 2.7-1.51 1.97 0 3.45 1.28 3.45 4.03v4.24z" />
@@ -268,7 +268,7 @@
                     <!-- GitHub Icon -->
                     <a href="https://github.com/cjron128" target="_blank" class="text-accent hover:text-accent2"
                         aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 lg:floating"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 floating"
                             viewBox="0 0 24 24">
                             <path
                                 d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.415-4.033-1.415-.546-1.388-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.874.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.21v3.293c0 .322.21.696.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
@@ -282,7 +282,7 @@
         <div
             class="hidden interact-section col-span-full lg:col-start-2 lg:row-span-1 lg:col-span-1 lg:flex items-center justify-center relative">
             <a href="./misc/gauntlet-start.html" id="gauntletButton"
-                class="hidden lg:inline-block px-4 py-2 gauntlet-button lg:floating font-bold transition opacity-50 pointer-events-none">
+                class="hidden lg:inline-block px-4 py-2 gauntlet-button floating font-bold transition opacity-50 pointer-events-none">
                 👾
             </a>
             <!-- Lock icon overlay (hidden on mobile) -->
@@ -306,17 +306,17 @@
         <!-- Song Recommendations Section -->
         <section id="songs"
             class="interact-section col-span-full lg:col-start-2 lg:row-span-1 lg:col-span-2 flex flex-col lg:flex-row justify-between p-4">
-            <h2 class="text-lg font-bold mx-auto mb-4 lg:my-auto lg:mx-4 whitespace-nowrap">Song Roulette Wheel</h2>
-            <div class="flex flex-row lg:mx-4">
+            <h2 class="text-lg font-bold my-auto whitespace-nowrap">Song Roulette Wheel</h2>
+            <div class="flex flex-row mx-auto lg:mx-4">
                 <!-- Song Card Container -->
-                <div id="song-card-container" class="overflow-hidden mx-4 w-[325px] lg:floating">
+                <div id="song-card-container" class="overflow-hidden mx-4 md:min-w-[160px] lg:min-w-[325px] floating">
                     <!-- Random song card will be inserted here -->
                 </div>
                 <!-- Reset Icon -->
                 <button id="song-reset" class="z-10" aria-label="Spin for a new song">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-6 h-6 lg:floating">
+                        class="w-6 h-6 floating">
                         <path d="M2.5 2v6h6M21.5 22v-6h-6" />
                         <path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2" />
                     </svg>
@@ -326,38 +326,41 @@
 
         <!-- Projects Section -->
         <section id="projects"
-            class="interact-section col-span-full lg:col-start-1 lg:row-span-2 lg:col-span-3 flex flex-col lg:flex-row justify-center">
-            <h2 class="text-xl font-bold mx-auto my-4 lg:mx-20 lg:my-auto">Projects</h2>
-            <div class="flex flex-row items-center w-full justify-end mb-4 lg:my-auto lg:px-6">
-                <!-- Left Arrow -->
-                <button id="prev" class="hidden lg:flex lg:p-2 z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
+            class="interact-section col-span-full lg:col-start-1 lg:row-span-2 lg:col-span-3  ">
+            <div class="flex flex-col lg:flex-row items-center justify-evenly my-auto w-full h-full">
+                <h2 class="text-xl font-bold text-center pt-4 my-auto w-1/4">Projects</h2>
+                <div class="flex flex-row items-center justify-center w-3/4 my-auto space-x-8 pr-8">
+                    <!-- Left Arrow -->
+                    <button id="prev" class="hidden md:flex lg:p-2 z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
 
-                <!-- Repo Cards Container -->
-                <div id="projects-container"
-                    class="overflow-hidden px-4 mx-auto lg:mx-4 min-w-[250px] max-w-[500px] lg:floating">
-                    <div id="projects-inner" class="flex gap-4 transition-transform duration-300 ">
-                        <!-- Repo cards will be dynamically inserted here -->
+                    <!-- Repo Cards Container -->
+                    <div id="projects-container"
+                        class="overflow-hidden py-4 mx-auto lg:mx-4 min-w-[250px] max-w-[800px] floating">
+                        <div id="projects-inner" class="flex gap-4 transition-transform duration-300 ">
+                            <!-- Repo cards will be dynamically inserted here -->
+                        </div>
                     </div>
-                </div>
 
-                <!-- Right Arrow -->
-                <button id="next" class="hidden lg:flex lg:p-2 z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
+                    <!-- Right Arrow -->
+                    <button id="next" class="hidden md:flex lg:p-2 z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
             </div>
+
         </section>
 
         <!-- Resume Download -->
         <a href="./assets/resume/resume.pdf" download
-            class="col-span-full lg:col-start-4 lg:row-span-1 lg:col-span-1 flex items-center justify-center interact-section font-bold text-xl lg:floating mb-4">
+            class="col-span-full lg:col-start-4 lg:row-span-1 lg:col-span-1 flex items-center justify-center interact-section font-bold text-xl floating mb-4 lg:mb-0">
             <span class="py-4">Resume</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 class="w-6 h-6 ml-2">
@@ -497,7 +500,7 @@
                 const containerWidth = projectsContainer.clientWidth;
                 const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
                 const totalCards = projectsInner.children.length;
-                const minTranslate = -((totalCards - 1) * (containerWidth-gapValue));
+                const minTranslate = -((totalCards - 1) * (containerWidth - gapValue));
                 if (currentTranslate > 0) currentTranslate = 0;
                 if (currentTranslate < minTranslate) currentTranslate = minTranslate;
             };
@@ -508,7 +511,7 @@
                 const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
                 if (currentIndex > 0) {
                     currentIndex--;
-                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
+                    currentTranslate = - (currentIndex * (containerWidth - gapValue));
                     updateCarousel();
                 }
             });
@@ -519,7 +522,7 @@
                 const totalCards = projectsInner.children.length;
                 if (currentIndex < totalCards - 1) {
                     currentIndex++;
-                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
+                    currentTranslate = - (currentIndex * (containerWidth - gapValue));
                     updateCarousel();
                 }
             });
