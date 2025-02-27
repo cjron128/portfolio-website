@@ -511,7 +511,7 @@
                 const gapValue = parseFloat(getComputedStyle(projectsInner).gap) || 0;
                 if (currentIndex > 0) {
                     currentIndex--;
-                    currentTranslate = - (currentIndex * (containerWidth - gapValue));
+                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
                     updateCarousel();
                 }
             });
@@ -522,7 +522,7 @@
                 const totalCards = projectsInner.children.length;
                 if (currentIndex < totalCards - 1) {
                     currentIndex++;
-                    currentTranslate = - (currentIndex * (containerWidth - gapValue));
+                    currentTranslate = - (currentIndex * (containerWidth + gapValue));
                     updateCarousel();
                 }
             });
